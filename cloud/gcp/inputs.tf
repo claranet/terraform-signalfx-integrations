@@ -1,12 +1,12 @@
 # GCP Integration specific
 
-variable "gcp_project_id" {
-	description = "GCP project id for use with the GCP integration"
-	type = string
-	default = "gcp_project_id_1"
+variable "gcp_service_account_id" {
+  description = "GCP service account id for use with the SignalFX GCP integration"
+  type        = string
+  default     = ""
 }
 
-variable "gcp_project_key" {
-	description = "GCP project key for use with GCP integration"
-	default = ["${file("/path/to/gcp_credentials_1.json")}"]
+variable "gcp_project_id" {
+  description = "GCP project id for use with the SignalFX GCP integration"
+  type        = string
 }

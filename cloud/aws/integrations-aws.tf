@@ -1,29 +1,38 @@
-resource "signalfx_aws_external_integration" "aws_claranet_external" {
-	name = "AWSClaranetIntegration"
+resource "signalfx_aws_external_integration" "sfx_integration_external" {
+	name = "AWSIntegration-${random_id.suffix.b64_url}"
 }
 
-resource "signalfx_aws_integration" "aws_claranet" {
-	enabled = var.enable_flag
+resource "signalfx_aws_integration" "sfx_integration" {
+	enabled = var.enabled
 
-	integration_id = "${signalfx_aws_external_integration.aws_claranet_external.id}"
-	external_id = "${signalfx_aws_external_integration.aws_claranet_external.external_id}"
-	role_arn = "${aws_iam_role.aws_sfx_role.arn}"
+	integration_id = signalfx_aws_external_integration.sfx_integration_external.id
+	external_id = signalfx_aws_external_integration.sfx_integration_external.external_id
+	role_arn = aws_iam_role.sfx_role.arn
 	regions = var.aws_regions
 	poll_rate = var.aws_poll_rate
-	import_cloud_watch = var.import_cloud_watch_flag
-	enable_aws_usage = var.enable_aws_usage_flag
+	import_cloud_watch = var.import_cloudwatch
+	enable_aws_usage = var.import_aws_usage
 
-	/*custom_namespace_sync_rule {
-		default_action = var.custom_namespace_rules_default_action
-		filter_action = var.custom_namespace_rules_filter_action
-		filter_source = var.custom_namespace_rules_filter_source
-		namespace = var.custom_namespace_rules_namespace
-	}
-
-	namespace_sync_rule {
+	/*  Error:
+    var.namespace_rules_filter_source_1 is tuple with 1 element
+    Inappropriate value for attribute "filter_source": string required.
+    
+    namespace_sync_rule {
 		default_action = var.namespace_rules_default_action
 		filter_action = var.namespace_rules_filter_action
-		filter_source = var.namespace_rules_filter_source
-		namespace = var.namespace_rules_namespace
+		filter_source = var.namespace_rules_filter_source_1
+		namespace = var.namespace_rules_1
+	}
+
+	dynamic "namespace_sync_rule" {
+		iterator = iter
+		for_each = var.namespace_rules_list
+		content {
+			default_action = var.namespace_rules_default_action
+			filter_action = var.namespace_rules_filter_action
+			filter_source = var.namespace_rules_filter_source
+			namespace = iter.value
+		}
 	}*/
+
 }
