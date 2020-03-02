@@ -1,7 +1,7 @@
 resource "aws_iam_policy" "sfx_policy" {
-	name = "SignalFxReadPermissionsPolicy-${random_id.suffix.b64_url}"
-	description = "AWS Policy"
-	policy = <<EOF
+  name        = "SignalFxIntegrationPolicy${var.suffix == "" ? "" : "-${title(var.suffix)}"}"
+  description = "AWS Policy"
+  policy      = <<EOF
 {
 "Version": "2012-10-17",
 "Statement": [
@@ -79,4 +79,21 @@ resource "aws_iam_policy" "sfx_policy" {
 	]
 }
 EOF
+}
+
+data "aws_iam_policy_document" "sfx_policy_doc" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "AWS"
+      identifiers = [signalfx_aws_external_integration.sfx_integration_external.signalfx_aws_account]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "sts:ExternalId"
+      values   = [signalfx_aws_external_integration.sfx_integration_external.external_id]
+    }
+  }
 }
