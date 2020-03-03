@@ -13,12 +13,11 @@ resource "signalfx_aws_integration" "sfx_integration" {
   import_cloud_watch = var.import_cloudwatch
   enable_aws_usage   = var.import_aws_usage
 
-
   namespace_sync_rule {
     default_action = var.namespace_rules_default_action
     filter_action  = var.namespace_rules_filter_action
-    filter_source  = var.namespace_rules_filter_source_1
-    namespace      = var.namespace_rules_1
+    filter_source  = var.namespace_rules_filter_source_ec2
+    namespace      = var.namespace_rules_ec2
   }
 
   dynamic "namespace_sync_rule" {
