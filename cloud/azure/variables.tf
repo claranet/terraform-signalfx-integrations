@@ -40,5 +40,5 @@ variable "azure_sp_validation_time" {
   Changing this field forces a new resource to be created
 EOD
   type        = string
-  default     = "17500h" # 2 years
+  default     = "${2 * 365 * 24}h" # approximately 2 years
 }
