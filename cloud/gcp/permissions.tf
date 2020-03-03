@@ -1,5 +1,5 @@
 resource "google_project_iam_custom_role" "sfx_role" {
-  role_id     = "signalfx${var.suffix == "" ? "" : ".${lower(var.suffix)}"}"
+  role_id     = "signalfx${var.suffix == "" ? "" : ".${substr(lower(replace(var.suffix, "-", "_")), 0, 64)}"}"
   title       = "SignalFX${var.suffix == "" ? "" : " - ${title(var.suffix)}"}"
   description = "SignalFX viewer role for monitoring${var.suffix == "" ? "" : " for ${lower(var.suffix)}"}"
   permissions = [

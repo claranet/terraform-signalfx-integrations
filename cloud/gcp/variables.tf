@@ -1,17 +1,21 @@
-variable "enabled" {
-  description = "(Required) Whether the integration is enabled"
-  default     = "true"
-}
-
-variable "poll_rate" {
-  description = "(Optional) AWS poll rate (in seconds). One of 60 or 300."
-  default     = 300
-}
+# Global
 
 variable "suffix" {
   description = "Optional suffix to identify and avoid duplication of unique resources"
   type        = string
   default     = ""
+}
+
+# GCP Integration specific
+
+variable "enabled" {
+  description = "Whether the GCP integration is enabled"
+  default     = "true"
+}
+
+variable "poll_rate" {
+  description = "GCP poll rate in seconds (One of 60 or 300)"
+  default     = 300
 }
 
 variable "gcp_service_account_id" {
