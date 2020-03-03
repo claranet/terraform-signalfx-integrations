@@ -1,5 +1,5 @@
 resource "azuread_application" "signalfx_integration" {
-  name     = "SignalFxAzureIntegration"
+  name     = coalesce(var.custom_sfx_integration_name, local.default_integration_name)
   homepage = "https://www.signalfx.com/"
 
   available_to_other_tenants = false
