@@ -1,6 +1,6 @@
 output "monitoring_user_password" {
   description = "Monitoring user password if created by the module"
-  value       = join("", random_password.datadog.*.result)
+  value       = join("", random_password.sfx.*.result)
   sensitive   = true
 }
 

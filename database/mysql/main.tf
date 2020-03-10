@@ -1,5 +1,5 @@
 provider "mysql" {
-  alias = "datadog-integration"
+  alias = "sfx-integration"
 
   endpoint = format("%s:%s", var.mysql_server_host, var.mysql_server_port)
   username = var.mysql_server_admin_login
