@@ -34,7 +34,7 @@ variable "create_monitoring_user" {
 variable "monitoring_user_login" {
   description = "MySQL user login for monitoring"
   type        = string
-  default     = "datadog"
+  default     = "sfx"
 }
 
 variable "monitoring_user_host" {
