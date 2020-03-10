@@ -14,5 +14,5 @@ variable "enabled" {
 }
 
 variable "api_key" {
-	description = "Pagerduty API token"
+  description = "Pagerduty API token"
 }
