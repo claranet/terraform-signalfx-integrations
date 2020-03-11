@@ -1,4 +1,4 @@
-# CLOUD AWS SignalFX integrations
+# CLOUD AWS SignalFx integrations
 
 ## How to use this module
 
@@ -36,8 +36,8 @@ module "signalfx-integrations-cloud-aws" {
 |------|-------------|
 | aws\_role\_arn | The role ARN of the SignalFx integration |
 | aws\_role\_name | The IAM role name of the SignalFx integration |
-| sfx\_external\_id | SignalFX integration external ID |
-| sfx\_integration\_id | SignalFX integration ID |
+| sfx\_external\_id | SignalFx integration external ID |
+| sfx\_integration\_id | SignalFx integration ID |
 
 ## Related documentation
 

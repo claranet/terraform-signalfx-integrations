@@ -1,9 +1,9 @@
-# CLOUD GCP DataDog integrations
+# CLOUD GCP SignalFx integrations
 
 ## How to use this module
 
 ```hcl
-module "datadog-integrations-cloud-gcp" {
+module "signalfx-integrations-cloud-gcp" {
   source = "git::ssh://git@github.com/claranet/terraform-signalfx-integrations.git//cloud/gcp?ref={revision}"
 
   gcp_project_id         = var.gcp_project_id
@@ -16,8 +16,8 @@ module "datadog-integrations-cloud-gcp" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
 | enabled | Whether the GCP integration is enabled | `string` | `"true"` | no |
-| gcp\_project\_id | GCP project id for use with the SignalFX GCP integration | `string` | n/a | yes |
-| gcp\_service\_account\_id | GCP service account id for use with the SignalFX GCP integration | `string` | `""` | no |
+| gcp\_project\_id | GCP project id for use with the SignalFx GCP integration | `string` | n/a | yes |
+| gcp\_service\_account\_id | GCP service account id for use with the SignalFx GCP integration | `string` | `""` | no |
 | poll\_rate | GCP poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 

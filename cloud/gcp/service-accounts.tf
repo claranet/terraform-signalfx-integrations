@@ -6,7 +6,7 @@ data "google_service_account" "sfx_service_account" {
 resource "google_service_account" "sfx_service_account" {
   count        = var.gcp_service_account_id == "" ? 1 : 0
   account_id   = "signalfx${var.suffix == "" ? "" : "-${substr(lower(var.suffix), 0, 30)}"}"
-  display_name = "SignalFX Integration${var.suffix == "" ? "" : " - ${title(var.suffix)}"}"
+  display_name = "SignalFx Integration${var.suffix == "" ? "" : " - ${title(var.suffix)}"}"
 }
 
 locals {
