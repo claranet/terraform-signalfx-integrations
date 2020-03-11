@@ -1,4 +1,4 @@
-# DATABASE MYSQL SignalFX integrations
+# DATABASE MYSQL SignalFx integrations
 
 ## How to use this module
 
@@ -41,4 +41,4 @@ module "signalfx-integrations-database-mysql" {
 
 ## Purpose
 
-This module prepares a MySQL server for use with SignalFX.
+This module prepares a MySQL server for use with SignalFx.
