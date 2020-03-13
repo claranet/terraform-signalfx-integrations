@@ -45,7 +45,7 @@ module "signalfx-integrations-cloud-aws" {
 
 ## Requirements
 
-You need to configure you AWS provider.
+You need to configure your AWS provider.
 Credentials could be set in your `terraform.tfvars`.
 
 ```
@@ -77,4 +77,3 @@ provider "aws" {
 }
 
 ```
-
