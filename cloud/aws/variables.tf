@@ -155,7 +155,7 @@ variable "namespace_rules_list" {
     "AWS/TrustedAdvisor",
     "AWS/NATGateway",
     #    "AWS/TransitGateway",
-    #    "AWS/VPN",
+    "AWS/VPN",
     "WAF",
     "AWS/WorkMail",
     "AWS/WorkSpaces"
