@@ -77,3 +77,10 @@ provider "aws" {
 }
 
 ```
+
+## Notes
+
+* As for any integration configuration you need a **session** token from your SignalFx user (and not an **org** access token)
+* You need to be an IAM admin on AWS account
+* The first apply could fail with error `is not authorized to perform: sts:AssumeRole on resource:` when AWS signalfx integration is configured before the policy attachment to IAM role from AWS side that it is actualy available
+
