@@ -29,3 +29,7 @@ module "signalfx-integrations-alerting-pagerduty" {
 
 [Official documentation](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#integrate-with-pagerduty)
 [Pagerduty documentation](https://www.pagerduty.com/docs/guides/signalfx-integration-guide/)
+
+## Notes
+
+* As for any integration configuration you need a **session** token from your SignalFx user (and not an **org** access token)

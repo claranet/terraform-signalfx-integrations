@@ -45,3 +45,7 @@ provider "google" {
   project = var.gcp_project
 }
 ```
+
+## Notes
+
+* As for any integration configuration you need a **session** token from your SignalFx user (and not an **org** access token)
