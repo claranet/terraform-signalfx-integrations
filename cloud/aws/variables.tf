@@ -169,5 +169,5 @@ variable "namespace_rules_ec2" {
 
 variable "namespace_rules_filter_source_ec2" {
   description = "SignalFlow filter() function that whitelist or blacklist specific tags for EC2 to avoid overbilling"
-  default     = "filter('aws_tag_claranet_monitored', 'true')"
+  default     = "filter('aws_tag_sfx_monitored', 'true')"
 }
