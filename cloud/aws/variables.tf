@@ -10,11 +10,13 @@ variable "suffix" {
 
 variable "enabled" {
   description = "Whether the AWS integration is enabled"
-  default     = "true"
+  type        = bool
+  default     = true
 }
 
 variable "poll_rate" {
-  description = "AWS poll rate in seconds (60 or 300)"
+  description = "AWS poll rate in seconds (One of 60 or 300)"
+  type        = number
   default     = 300
 }
 
