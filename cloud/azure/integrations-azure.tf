@@ -1,5 +1,5 @@
 resource "signalfx_azure_integration" "azure_integration" {
-  name        = coalesce(var.custom_sfx_integration_name, local.default_integration_name)
+  name        = local.integration_name
   enabled     = var.enabled
   environment = "azure"
 

@@ -1,39 +1,11 @@
-# SignalFx Azure Integration
+# CLOUD AZURE SignalFx integrations
 
-
-## Usage
+## How to use this module
 
 ```hcl
-terraform {
-  required_version = ">= 0.12"
-  required_providers {
-    azurerm  = "~> 1.44"
-    azuread  = "~> 0.7"
-    signalfx = "~> 4.16"
-  }
-}
-
-provider "azurerm" {
-  subscription_id = var.azure_subscription_id
-  tenant_id       = var.azure_tenant_id
-}
-
-provider "azuread" {
-  subscription_id = var.azure_subscription_id
-  tenant_id       = var.azure_tenant_id
-}
-
-variable "sfx_token" {
-  type = string
-}
-
-provider "signalfx" {
-  auth_token = var.sfx_token
-  api_url    = "https://api.eu0.signalfx.com"
-}
-
 module "signalfx-integrations-cloud-azure" {
-  source                 = "git::ssh://git@github.com/claranet/terraform-signalfx-integrations.git//cloud/azure"
+  source                 = "github.com/claranet/terraform-signalfx-integrations.git//cloud/azure?ref={revision}"
+
   azure_tenant_id        = var.azure_tenant_id
   azure_subscription_ids = [var.azure_subscription_id]
 }
@@ -46,6 +18,7 @@ module "signalfx-integrations-cloud-azure" {
 |------|---------|
 | azuread | ~> 0.7 |
 | azurerm | ~> 1.44 |
+| random | n/a |
 | signalfx | ~> 4 |
 
 ## Inputs
@@ -56,9 +29,10 @@ module "signalfx-integrations-cloud-azure" {
 | azure\_subscription\_ids | List of Azure Subscription IDs to monitor | `list(string)` | n/a | yes |
 | azure\_tenant\_id | Azure Tenant ID/Directory ID | `string` | n/a | yes |
 | custom\_sfx\_integration\_name | SignalFx integration custom resource name | `string` | `""` | no |
-| enabled | Flag that controls whether the integration is enabled | `bool` | `true` | no |
-| poll\_rate | Poll rate (in seconds). One of 60 or 300. | `number` | `60` | no |
+| enabled | Whether the Azure integration is enabled | `bool` | `true` | no |
+| poll\_rate | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
 | sfx\_integration\_name\_suffix | SignalFx Integration name suffix | `string` | `""` | no |
+| suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 
 ## Outputs
 
@@ -66,3 +40,49 @@ module "signalfx-integrations-cloud-azure" {
 |------|-------------|
 | azure\_ad\_sp\_app\_id | The Azure Service Principal App ID of the SignalFx integration |
 | azure\_ad\_sp\_object\_id | The Azure Service Principal Object ID of the SignalFx integration |
+
+## Related documentation
+
+[Official documentation](https://docs.signalfx.com/en/latest/integrations/azure-info.html#connect-to-microsoft-azure)
+
+## Requirements
+
+You need to configure your Azure and SignalFx providers.
+Credentials could be set in your `terraform.tfvars`.
+
+```
+variable "sfx_token" {
+  description = "User API token from an admin on SignalFx organization"
+  type        = string
+}
+
+provider "signalfx" {
+  auth_token  = var.sfx_token # admin temporary session token
+  api_url     = "https://api.eu0.signalfx.com" # change for your realm
+}
+
+variable "azure_subscription_id" {
+  type        = string
+}
+
+variable "azure_tenant_id" {
+  type        = string
+}
+
+provider "azurerm" {
+  subscription_id = var.azure_subscription_id
+  tenant_id       = var.azure_tenant_id
+}
+
+provider "azuread" {
+  subscription_id = var.azure_subscription_id
+  tenant_id       = var.azure_tenant_id
+}
+
+```
+
+## Notes
+
+* As for any integration configuration you need a [**session**](https://docs.signalfx.com/en/latest/admin-guide/tokens.html#user-api-access-tokens) token from an admin
+* You need to be an IAM admin on Azure account
+
