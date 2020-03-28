@@ -56,26 +56,26 @@ variable "sfx_token" {
 }
 
 provider "signalfx" {
-  auth_token  = var.sfx_token # admin temporary session token
-  api_url     = "https://api.eu0.signalfx.com" # change for your realm
+  auth_token = var.sfx_token                  # admin temporary session token
+  api_url    = "https://api.eu0.signalfx.com" # change for your realm
 }
 
 variable "aws_access_key" {
-  type        = string
+  type = string
 }
 
 variable "aws_secret_key" {
-  type        = string
+  type = string
 }
 
 variable "aws_token" {
-  type        = string
+  type = string
 }
 
 provider "aws" {
-  access_key  = var.aws_access_key
-  secret_key  = var.aws_secret_key
-  token       = var.aws_token
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
+  token      = var.aws_token
 }
 
 ```

@@ -48,12 +48,12 @@ variable "sfx_token" {
 }
 
 provider "signalfx" {
-  auth_token  = var.sfx_token # admin temporary session token
-  api_url     = "https://api.eu0.signalfx.com" # change for your realm
+  auth_token = var.sfx_token                  # admin temporary session token
+  api_url    = "https://api.eu0.signalfx.com" # change for your realm
 }
 
 variable "pagerduty_integration_key" {
-  type        = string
+  type = string
 }
 
 ```

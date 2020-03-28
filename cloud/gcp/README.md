@@ -51,16 +51,16 @@ variable "sfx_token" {
 }
 
 provider "signalfx" {
-  auth_token  = var.sfx_token # admin temporary session token
-  api_url     = "https://api.eu0.signalfx.com" # change for your realm
+  auth_token = var.sfx_token                  # admin temporary session token
+  api_url    = "https://api.eu0.signalfx.com" # change for your realm
 }
 
 variable "gcp_project" {
-  type        = string
+  type = string
 }
 
 provider "google" {
-  project     = var.gcp_project
+  project = var.gcp_project
 }
 
 ```
