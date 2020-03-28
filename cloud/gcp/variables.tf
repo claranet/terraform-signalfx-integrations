@@ -20,6 +20,12 @@ variable "poll_rate" {
   default     = 300
 }
 
+variable "services" {
+  description = "GCP service metrics to import. Empty list imports all services"
+  type        = list
+  default     = []
+}
+
 variable "gcp_service_account_id" {
   description = "GCP service account id for use with the SignalFx GCP integration"
   type        = string
