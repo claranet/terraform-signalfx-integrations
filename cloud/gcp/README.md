@@ -26,6 +26,7 @@ module "signalfx-integrations-cloud-gcp" {
 | gcp\_project\_id | GCP project id for use with the SignalFx GCP integration | `string` | n/a | yes |
 | gcp\_service\_account\_id | GCP service account id for use with the SignalFx GCP integration | `string` | `""` | no |
 | poll\_rate | GCP poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
+| services | GCP service metrics to import. Empty list imports all services | `list` | `[]` | no |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 
 ## Outputs
