@@ -22,58 +22,63 @@ variable "poll_rate" {
 
 variable "aws_regions" {
   description = "List of AWS regions that SignalFx should monitor"
+  type        = list
   default     = ["eu-west-1"]
 }
 
 variable "import_cloudwatch" {
   description = "Import Cloud Watch metrics from AWS"
-  default     = "true"
+  type        = bool
+  default     = true
 }
 
 variable "import_aws_usage" {
   description = "Import usage metrics from AWS to use with AWS Cost Optimizer"
-  default     = "true"
+  type        = bool
+  default     = true
 }
 
-variable "custom_namespace_rules_default_action" {
-  description = "How SignalFx processes data from a custom AWS namespace when there is no filters (Include or Exclude)"
-  default     = "Exclude"
+variable "use_get_metric_data" {
+  description = "Enable the use of Amazon's GetMetricData for collecting metrics"
+  type        = bool
+  default     = true
 }
 
-variable "custom_namespace_rules_filter_action" {
-  description = "How SignalFx processes data from a custom AWS namespace for filters (Include or Exclude)"
-  default     = "Include"
+variable "custom_namespace_sync_rule" {
+  description = "Each element controls the data collected by SignalFx for the specified namespace"
+  type = object({
+    default_action = string
+    filter_action  = string
+    filter_source  = string
+    namespace      = string
+  })
+  default = {
+    default_action = null
+    filter_action  = null
+    filter_source  = null
+    namespace      = "*"
+  }
 }
 
-variable "custom_namespace_rules_filter_source" {
-  description = "SignalFlow filter() function that selects the data that SignalFx should sync for the custom namespace associated with this sync rule"
-  default     = "filter('code', '200')"
+variable "namespace_sync_rule" {
+  description = "Default namespace sync rule with filtering capabilities"
+  type = object({
+    default_action = string
+    filter_action  = string
+    filter_source  = string
+    namespace      = string
+  })
+  default = {
+    default_action = "Exclude"
+    filter_action  = "Include"
+    filter_source  = "filter('aws_tag_sfx_monitored', 'true')"
+    namespace      = "AWS/EC2"
+  }
 }
 
-variable "custom_namespace_rules_namespace" {
-  description = "An AWS custom namespace having custom AWS metrics that you want to sync with SignalFx"
-  default     = "AWS/ApiGateway"
-}
-
-# (Optional) Each element in the array is an object that contains an AWS namespace name and a filter that controls the data that SignalFx collects for the namespace. Conflicts with the services property. If you don't specify either property, SignalFx syncs all data in all AWS namespaces.
-
-variable "namespace_rules_default_action" {
-  description = "How SignalFx processes data from default AWS namespace when there is no filters (Include or Exclude)"
-  default     = "Exclude"
-}
-
-variable "namespace_rules_filter_action" {
-  description = "How SignalFx processes data from a default AWS namespace for filters (Include or Exclude)"
-  default     = "Include"
-}
-
-variable "namespace_rules_filter_source" {
-  description = "SignalFlow filter() function that selects the data that SignalFx should sync for default AWS namespace associated with this sync rule"
-  default     = ""
-}
-
-variable "namespace_rules_list" {
-  description = "List of default AWS namespaces having AWS metrics that you want to sync with SignalFx"
+variable "namespaces" {
+  description = "List of default AWS namespaces to sync without any filtering in addition to \"namespace_sync_rule\""
+  type        = list
   default = [
     #    "AWS/Cassandra",
     "AWS/ApiGateway",
@@ -164,12 +169,3 @@ variable "namespace_rules_list" {
   ]
 }
 
-variable "namespace_rules_ec2" {
-  description = "EC2 default AWS namespace having AWS metrics that you want to sync with SignalFx"
-  default     = "AWS/EC2"
-}
-
-variable "namespace_rules_filter_source_ec2" {
-  description = "SignalFlow filter() function that whitelist or blacklist specific tags for EC2 to avoid overbilling"
-  default     = "filter('aws_tag_sfx_monitored', 'true')"
-}
