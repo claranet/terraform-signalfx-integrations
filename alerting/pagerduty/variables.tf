@@ -10,9 +10,11 @@ variable "suffix" {
 
 variable "enabled" {
   description = "Whether the PagerDuty integration is enabled"
-  default     = "true"
+  type        = bool
+  default     = true
 }
 
 variable "api_key" {
   description = "Pagerduty API token"
+  type        = string
 }
