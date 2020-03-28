@@ -20,6 +20,12 @@ variable "poll_rate" {
   default     = 300
 }
 
+variable "services" {
+  description = "Azure service metrics to import. Empty list imports all services"
+  type        = list
+  default     = []
+}
+
 variable "azure_tenant_id" {
   description = "Azure Tenant ID/Directory ID"
   type        = string

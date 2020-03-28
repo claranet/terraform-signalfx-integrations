@@ -28,10 +28,9 @@ module "signalfx-integrations-cloud-azure" {
 | azure\_sp\_validation\_time | Relative duration for which the Password is valid until, for example `240h` (10 days) or `2400h30m`. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".   Changing this field forces a new resource to be created | `string` | `"17520h"` | no |
 | azure\_subscription\_ids | List of Azure Subscription IDs to monitor | `list(string)` | n/a | yes |
 | azure\_tenant\_id | Azure Tenant ID/Directory ID | `string` | n/a | yes |
-| custom\_sfx\_integration\_name | SignalFx integration custom resource name | `string` | `""` | no |
 | enabled | Whether the Azure integration is enabled | `bool` | `true` | no |
 | poll\_rate | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
-| sfx\_integration\_name\_suffix | SignalFx Integration name suffix | `string` | `""` | no |
+| services | Azure service metrics to import. Empty list imports all services | `list` | `[]` | no |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 
 ## Outputs

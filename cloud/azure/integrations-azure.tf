@@ -8,7 +8,7 @@ resource "signalfx_azure_integration" "azure_integration" {
   secret_key = azuread_service_principal_password.signalfx_integration_sp_pwd.value
   app_id     = azuread_application.signalfx_integration.application_id
 
-  services = [] # empty = All
+  services = var.services
 
   tenant_id     = var.azure_tenant_id
   subscriptions = var.azure_subscription_ids
