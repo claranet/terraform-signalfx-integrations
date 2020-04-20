@@ -4,7 +4,7 @@
 
 ```hcl
 module "signalfx-integrations-cloud-gcp" {
-  source                 = "git@github.com/claranet/terraform-signalfx-integrations.git//cloud/gcp?ref={revision}"
+  source                 = "github.com/claranet/terraform-signalfx-integrations.git//cloud/gcp?ref={revision}"
 
   gcp_project_id         = var.gcp_project
 }
