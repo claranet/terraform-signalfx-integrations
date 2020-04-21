@@ -36,4 +36,3 @@ variable "gcp_project_id" {
   description = "GCP project id for use with the SignalFx GCP integration"
   type        = string
 }
-
