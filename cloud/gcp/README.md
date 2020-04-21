@@ -41,6 +41,17 @@ module "signalfx-integrations-cloud-gcp" {
 
 ## Requirements
 
+**WARNING:** When the `gcp_service_account_id` parameter is not provided, this module creates a service account and uses the `google_project_iam_member` resource which is not compatible with IAM permissions set externally and authoritatively managed with the `google_project_iam_policy` resource. If you happen to use the `google_project_iam_policy` resource on the provided GCP project,
+make sure to provide the `gcp_service_account_id` parameter and ensure the corresponding service account has the appropriate IAM permissions on the GCP project:
+ - monitoring.metricDescriptors.get
+ - monitoring.metricDescriptors.list
+ - monitoring.timeSeries.list
+ - resourcemanager.projects.get
+ - compute.instances.list
+ - compute.machineTypes.list
+ - spanner.instances.list
+ - storage.buckets.list
+
 You need to configure your GCP and SignalFx providers.
 Credentials could be set in your `terraform.tfvars`.
 

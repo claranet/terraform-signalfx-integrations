@@ -11,4 +11,3 @@ resource "signalfx_gcp_integration" "gcp_claranet_integration" {
 
   depends_on = [google_project_iam_member.sfx_service_account_membership]
 }
-
