@@ -11,5 +11,16 @@ resource "signalfx_webhook_integration" "relkon" {
     header_key   = "X-Relkon-Token"
     header_value = var.relkon_token
   }
+  headers {
+    header_key   = "X-Relkon-Host-Severity"
+    header_value = var.host_severity
+  }
+  dynamic "headers" {
+    for_each = var.additional_headers
+    content {
+      header_key   = headers.key
+      header_value = headers.value
+    }
+  }
 }
 
