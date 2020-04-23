@@ -6,8 +6,10 @@
 module "signalfx-integrations-alerting-relkon" {
   source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/relkon"
 
+  relkon_url          = var.relkon_url
   relkon_token        = var.relkon_token
-  notification_period = var.notification_period 
+  notification_period = var.notification_period
+  host_severity       = 30 # Change it according to your needs and the relkon API documentation
 }
 
 ```
@@ -22,7 +24,9 @@ module "signalfx-integrations-alerting-relkon" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| additional\_headers | Any additional headers to send | map | `{}` | no |
 | enabled | Whether the Webhook integration is enabled | bool | `"true"` | no |
+| host\_severity | Host severity value as explained in our internal documentation | string | n/a | yes |
 | notification\_period | Notification period \(either 24x7 or 8x5\) | string | n/a | yes |
 | relkon\_token | Relkon API token | string | n/a | yes |
 | relkon\_url | Relkon API endpoint | string | n/a | yes |
