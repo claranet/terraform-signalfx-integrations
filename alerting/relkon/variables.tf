@@ -28,3 +28,14 @@ variable "notification_period" {
   description = "Notification period (either 24x7 or 8x5)"
   type        = string
 }
+
+variable "host_severity" {
+  description = "Host severity value as explained in our internal documentation"
+  type        = string
+}
+
+variable "additional_headers" {
+  description = "Any additional headers to send"
+  type        = map
+  default     = {}
+}
