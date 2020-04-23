@@ -6,8 +6,10 @@
 module "signalfx-integrations-alerting-relkon" {
   source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/relkon"
 
+  relkon_url          = var.relkon_url
   relkon_token        = var.relkon_token
-  notification_period = var.notification_period 
+  notification_period = var.notification_period
+  host_severity       = 30 # Change it according to your needs and the relkon API documentation
 }
 
 ```
