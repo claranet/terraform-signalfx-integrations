@@ -82,6 +82,6 @@ provider "azuread" {
 
 ## Notes
 
-* As for any integration configuration you need a [**session**](https://docs.signalfx.com/en/latest/admin-guide/tokens.html#user-api-access-tokens) token from an admin
-* You need to be an IAM admin on Azure account
+* As for any integration configuration you need a [**session**](https://docs.signalfx.com/en/latest/admin-guide/tokens.html#user-api-access-tokens) token from an admin.
+* You need to be an AAD Applications Administrator and Owner on all Azure Subscriptions to monitor.
 
