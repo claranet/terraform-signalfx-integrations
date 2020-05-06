@@ -1,4 +1,3 @@
-
 terraform {
   required_version = "~> 0.12"
   required_providers {
@@ -6,4 +5,3 @@ terraform {
     signalfx = "~> 4"
   }
 }
-
