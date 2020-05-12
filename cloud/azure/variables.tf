@@ -23,25 +23,7 @@ variable "poll_rate" {
 variable "services" {
   description = "Azure service metrics to import. Empty list imports all services"
   type        = list
-
-  # 2020-05-11 - List from https://www.terraform.io/docs/providers/signalfx/r/azure_integration.html#service-names
-  default = [
-    "microsoft.sql/servers/elasticpools",
-    "microsoft.storage/storageaccounts",
-    "microsoft.storage/storageaccountsservices/tableservices",
-    "microsoft.storage/storageaccountsservices/blobservices",
-    "microsoft.storage/storageaccounts/queueservices",
-    "microsoft.storage/storageaccounts/fileservices",
-    "microsoft.compute/virtualmachinescalesets",
-    "microsoft.compute/virtualmachinescalesets/virtualmachines",
-    "microsoft.compute/virtualmachines",
-    "microsoft.devices/iothubs",
-    "microsoft.eventHub/namespaces",
-    "microsoft.batch/batchaccounts",
-    "microsoft.sql/servers/databases",
-    "microsoft.cache/redis",
-    "microsoft.logic/workflows"
-  ]
+  default     = []
 }
 
 variable "azure_tenant_id" {

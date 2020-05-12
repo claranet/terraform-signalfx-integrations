@@ -1,3 +1,6 @@
+data "signalfx_azure_services" "azure_services" {
+}
+
 resource "signalfx_azure_integration" "azure_integration" {
   name        = local.integration_name
   enabled     = var.enabled
@@ -8,7 +11,7 @@ resource "signalfx_azure_integration" "azure_integration" {
   secret_key = azuread_service_principal_password.signalfx_integration_sp_pwd.value
   app_id     = azuread_application.signalfx_integration.application_id
 
-  services = var.services
+  services = coalescelist(var.services, data.signalfx_azure_services.azure_services.services[*].name)
 
   tenant_id     = var.azure_tenant_id
   subscriptions = var.azure_subscription_ids
