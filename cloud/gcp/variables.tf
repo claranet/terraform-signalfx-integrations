@@ -14,12 +14,6 @@ variable "enabled" {
   default     = true
 }
 
-variable "named_token" {
-  description = "Named token to use for ingest on the SignalFx GCP integration"
-  type        = string
-  default     = null
-}
-
 variable "poll_rate" {
   description = "GCP poll rate in seconds (One of 60 or 300)"
   type        = number
