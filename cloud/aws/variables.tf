@@ -35,7 +35,7 @@ variable "import_cloudwatch" {
 variable "import_aws_usage" {
   description = "Import usage metrics from AWS to use with AWS Cost Optimizer"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "use_get_metric_data" {
