@@ -49,7 +49,7 @@ resource "aws_iam_policy" "sfx_policy" {
 			"logs:PutSubscriptionFilter",
 			"logs:DeleteSubscriptionFilter",
 			"logs:DescribeSubscriptionFilters",
-            "organizations:Describe*",
+			"organizations:Describe*",
 			"rds:Describe*",
 			"rds:List*",
 			"redshift:Describe*",
