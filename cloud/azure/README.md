@@ -16,10 +16,10 @@ module "signalfx-integrations-cloud-azure" {
 
 | Name | Version |
 |------|---------|
-| azuread | ~> 0.7 |
-| azurerm | ~> 1.44 |
+| azuread | >= 0.8 |
+| azurerm | >= 1.44 |
 | random | n/a |
-| signalfx | ~> 4 |
+| signalfx | >= 4.20.1 |
 
 ## Inputs
 
