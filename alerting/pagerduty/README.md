@@ -21,7 +21,7 @@ module "signalfx-integrations-alerting-pagerduty" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
-| api\_key | Pagerduty API token | `string` | n/a | yes |
+| api\_key | Pagerduty Integration Key | `string` | n/a | yes |
 | enabled | Whether the PagerDuty integration is enabled | `bool` | `true` | no |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 
@@ -61,3 +61,22 @@ variable "pagerduty_integration_key" {
 ## Notes
 
 * As for any integration configuration you need a **session** token from your SignalFx user (and not an **org** access token)
+
+
+## Usage
+
+```
+resource "signalfx_detector" "my_detector" {
+  // Detector stuff
+
+  rule {
+    description : "rule description"
+    severity      = "Severity"
+    detect_label  = "Detector Label ..."
+    notifications = [
+      format("PagerDuty,%s", module.signalfx-integrations-alerting-pagerduty.sfx_integration_id)
+    ]
+  }
+
+}
+```
