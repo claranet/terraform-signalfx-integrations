@@ -30,6 +30,7 @@ module "signalfx-integrations-alerting-pagerduty" {
 | Name | Description |
 |------|-------------|
 | sfx\_integration\_id | SignalFx integration ID |
+| sfx\_integration\_notification | SignalFx integration notification |
 
 ## Related documentation
 
@@ -65,11 +66,6 @@ variable "pagerduty_integration_key" {
 ## Detector example
 
 ```
-locals {
-  pagerduty_notification = format("PagerDuty,%s", data.terraform_remote_state.signalfx-alerting.outputs.pagerduty_id)
-}
-
-
 resource "signalfx_detector" "my_detector" {
   // Detector stuff
 
@@ -78,7 +74,7 @@ resource "signalfx_detector" "my_detector" {
     severity      = "Severity"
     detect_label  = "Detector Label ..."
     notifications = [
-      local.pagerduty_notification
+      module.signalfx-integrations-alerting-pagerduty.sfx_integration_notification
     ]
   }
 }
