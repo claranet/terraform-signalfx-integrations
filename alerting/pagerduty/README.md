@@ -20,8 +20,8 @@ module "signalfx-integrations-alerting-pagerduty" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
-| api\_key | Pagerduty Integration Key | `string` | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| api\_key | Pagerduty integration key | `string` | n/a | yes |
 | enabled | Whether the PagerDuty integration is enabled | `bool` | `true` | no |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 
@@ -30,12 +30,13 @@ module "signalfx-integrations-alerting-pagerduty" {
 | Name | Description |
 |------|-------------|
 | sfx\_integration\_id | SignalFx integration ID |
-| sfx\_integration\_notification | SignalFx integration notification |
+| sfx\_integration\_name | SignalFx integration name |
+| sfx\_integration\_notification | SignalFx integration formatted notification |
 
 ## Related documentation
 
-[Official documentation](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#integrate-with-pagerduty)
-[Pagerduty documentation](https://www.pagerduty.com/docs/guides/signalfx-integration-guide/)
+* [Official documentation](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#integrate-with-pagerduty)
+* [Pagerduty documentation](https://www.pagerduty.com/docs/guides/signalfx-integration-guide/)
 
 ## Requirements
 
