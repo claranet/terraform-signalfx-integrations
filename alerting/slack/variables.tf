@@ -15,12 +15,11 @@ variable "enabled" {
 }
 
 variable "webhook_url" {
-  description = "Slack Webhook URL"
+  description = "Slack webhook URL"
   type        = string
 }
 
 variable "slack_channel_name" {
   description = "Slack channel on which send the notifications (without #, only used to generated formatted notification output)."
   type        = string
-  default     = ""
 }

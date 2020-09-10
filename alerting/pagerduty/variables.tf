@@ -15,6 +15,7 @@ variable "enabled" {
 }
 
 variable "api_key" {
-  description = "Pagerduty Integration Key"
+  description = "Pagerduty integration key"
   type        = string
 }
+

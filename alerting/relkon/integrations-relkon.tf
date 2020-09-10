@@ -1,4 +1,4 @@
-resource "signalfx_webhook_integration" "relkon" {
+resource "signalfx_webhook_integration" "sfx_integration" {
   name    = format("%s_%s", var.suffix, var.notification_period)
   enabled = var.enabled
   url     = var.relkon_url

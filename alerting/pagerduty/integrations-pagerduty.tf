@@ -3,3 +3,4 @@ resource "signalfx_pagerduty_integration" "sfx_integration" {
   enabled = var.enabled
   api_key = var.api_key
 }
+
