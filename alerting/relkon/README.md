@@ -23,24 +23,26 @@ module "signalfx-integrations-alerting-relkon" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| additional\_headers | Any additional headers to send | map | `{}` | no |
-| enabled | Whether the Webhook integration is enabled | bool | `"true"` | no |
-| host\_severity | Host severity value as explained in our internal documentation | string | n/a | yes |
-| notification\_period | Notification period \(either 24x7 or 8x5\) | string | n/a | yes |
-| relkon\_token | Relkon API token | string | n/a | yes |
-| relkon\_url | Relkon API endpoint | string | n/a | yes |
-| suffix | Webhook name suffix, will precede the notif period | string | `"relkon"` | no |
+|------|-------------|------|---------|:--------:|
+| additional\_headers | Any additional headers to send | `map` | `{}` | no |
+| enabled | Whether the Webhook integration is enabled | `bool` | `true` | no |
+| host\_severity | Host severity value as explained in our internal documentation | `string` | n/a | yes |
+| notification\_period | Notification period (either 24x7 or 8x5) | `string` | n/a | yes |
+| relkon\_token | Relkon API token | `string` | n/a | yes |
+| relkon\_url | Relkon API endpoint | `string` | n/a | yes |
+| suffix | Webhook name suffix, will precede the notif period | `string` | `"relkon"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| sfx\_webhook\_id | SignalFx webhook ID |
+| sfx\_integration\_id | SignalFx integration ID |
+| sfx\_integration\_name | SignalFx integration name |
+| sfx\_integration\_notification | SignalFx integration formatted notification |
 
 ## Related documentation
 
-[Official documentation](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#send-notifications-via-a-webhook-url)
+* [Official documentation](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#send-notifications-via-a-webhook-url)
 
 ## Requirements
 
@@ -67,3 +69,20 @@ variable "relkon_token" {
 ## Notes
 
 * As for any integration configuration you need a **session** token from your SignalFx user (and not an **org** access token)
+
+## Detector example
+
+```
+resource "signalfx_detector" "my_detector" {
+  // Detector stuff
+
+  rule {
+    description : "rule description"
+    severity      = "Severity"
+    detect_label  = "Detector Label ..."
+    notifications = [
+      module.signalfx-integrations-alerting-relkon.sfx_integration_notification
+    ]
+  }
+}
+```

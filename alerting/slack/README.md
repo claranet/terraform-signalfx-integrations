@@ -21,11 +21,11 @@ module "signalfx-integrations-alerting-slack" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | enabled | Whether the PagerDuty integration is enabled | `bool` | `true` | no |
-| slack\_channel\_name | Slack channel on which send the notifications (without #, only used to generated formatted notification output). | `string` | `""` | no |
+| slack\_channel\_name | Slack channel on which send the notifications (without #, only used to generated formatted notification output). | `string` | n/a | yes |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
-| webhook\_url | Slack Webhook URL | `string` | n/a | yes |
+| webhook\_url | Slack webhook URL | `string` | n/a | yes |
 
 ## Outputs
 
@@ -37,8 +37,8 @@ module "signalfx-integrations-alerting-slack" {
 
 ## Related documentation
 
-[Official documentation](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#integrate-with-slack)
-[Pagerduty documentation](https://api.slack.com/messaging/webhooks)
+* [Official documentation](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#integrate-with-slack)
+* [Slack documentation](https://api.slack.com/messaging/webhooks)
 
 ## Requirements
 
