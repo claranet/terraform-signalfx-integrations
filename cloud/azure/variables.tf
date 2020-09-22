@@ -22,7 +22,7 @@ variable "poll_rate" {
 
 variable "services" {
   description = "Azure service metrics to import. Empty list imports all services"
-  type        = list
+  type        = list(string)
   default     = []
 }
 

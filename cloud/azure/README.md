@@ -39,13 +39,13 @@ module "signalfx-integrations-cloud-azure" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
-| azure\_sp\_validation\_time | Relative duration for which the Password is valid until, for example `240h` (10 days) or `2400h30m`. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".   Changing this field forces a new resource to be created | `string` | `"17520h"` | no |
+|------|-------------|------|---------|:--------:|
+| azure\_sp\_validation\_time | Relative duration for which the Password is valid until, for example `240h` (10 days) or `2400h30m`. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".<br>  Changing this field forces a new resource to be created | `string` | `"17520h"` | no |
 | azure\_subscription\_ids | List of Azure Subscription IDs to monitor | `list(string)` | n/a | yes |
 | azure\_tenant\_id | Azure Tenant ID/Directory ID | `string` | n/a | yes |
 | enabled | Whether the Azure integration is enabled | `bool` | `true` | no |
 | poll\_rate | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
-| services | Azure service metrics to import. Empty list imports all services | `list` | `[]` | no |
+| services | Azure service metrics to import. Empty list imports all services | `list(string)` | `[]` | no |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 
 ## Outputs
@@ -54,6 +54,12 @@ module "signalfx-integrations-cloud-azure" {
 |------|-------------|
 | azure\_ad\_sp\_app\_id | The Azure Service Principal App ID of the SignalFx integration |
 | azure\_ad\_sp\_object\_id | The Azure Service Principal Object ID of the SignalFx integration |
+| azure\_ad\_sp\_secret\_key | The Azure Service Principal secret key of the SignalFx integration |
+| signalfx\_integration\_name | The SignalFx integration name for Azure |
+| signalfx\_integration\_poll\_rate | The Azure poll rate configured in the SignalFx integration |
+| signalfx\_integration\_services | The list of Azure services configured in SignalFx integration |
+| signalfx\_integration\_subscriptions | The Azure subscriptions ids configured in the SignalFx integration |
+| signalfx\_integration\_tenant | The Azure tenant id configured in the SignalFx integration |
 
 ## Related documentation
 
