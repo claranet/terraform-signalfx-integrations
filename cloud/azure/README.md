@@ -30,7 +30,7 @@ module "signalfx-integrations-cloud-azure" {
 | azure\_tenant\_id | Azure Tenant ID/Directory ID | `string` | n/a | yes |
 | enabled | Whether the Azure integration is enabled | `bool` | `true` | no |
 | poll\_rate | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
-| services | Azure service metrics to import. Empty list imports all services | `list` | `[]` | no |
+| services | Azure service metrics to import. Empty list imports all services | `list(string)` | `[]` | no |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 
 ## Outputs
@@ -39,6 +39,11 @@ module "signalfx-integrations-cloud-azure" {
 |------|-------------|
 | azure\_ad\_sp\_app\_id | The Azure Service Principal App ID of the SignalFx integration |
 | azure\_ad\_sp\_object\_id | The Azure Service Principal Object ID of the SignalFx integration |
+| signalfx\_integration\_name | The SignalFx integration name for Azure |
+| signalfx\_integration\_poll\_rate | The Azure poll rate configured in the SignalFx integration |
+| signalfx\_integration\_services | The list of Azure services configured in SignalFx integration |
+| signalfx\_integration\_subscriptions | The Azure subscriptions ids configured in the SignalFx integration |
+| signalfx\_integration\_tenant | The Azure tenant id configured in the SignalFx integration |
 
 ## Related documentation
 
