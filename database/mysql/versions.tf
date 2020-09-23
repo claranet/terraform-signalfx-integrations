@@ -1,7 +1,9 @@
 terraform {
-  required_version = ">= 0.12"
-
   required_providers {
-    mysql = ">= 1.6.0"
+    signalfx = {
+      source  = "splunk-terraform/signalfx"
+      version = ">= 4.26.4"
+    }
   }
+  required_version = ">= 0.12.26"
 }
