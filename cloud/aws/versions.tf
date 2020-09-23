@@ -1,9 +1,9 @@
-
 terraform {
-  required_version = "~> 0.12"
   required_providers {
-    aws      = "~> 2"
-    signalfx = "~> 4"
+    signalfx = {
+      source  = "splunk-terraform/signalfx"
+      version = ">= 4.26.4"
+    }
   }
+  required_version = ">= 0.12.26"
 }
-
