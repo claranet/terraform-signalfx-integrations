@@ -2,6 +2,8 @@
 
 ## How to use this module
 
+Generate both Azure SP resources and SignalFX integration:
+
 ```hcl
 module "signalfx-integrations-cloud-azure" {
   source                 = "github.com/claranet/terraform-signalfx-integrations.git//cloud/azure?ref={revision}"
@@ -9,7 +11,20 @@ module "signalfx-integrations-cloud-azure" {
   azure_tenant_id        = var.azure_tenant_id
   azure_subscription_ids = [var.azure_subscription_id]
 }
+```
 
+Enable only SignalFX integration:
+
+```hcl
+module "signalfx-integrations-cloud-azure" {
+  source                 = "github.com/claranet/terraform-signalfx-integrations.git//cloud/azure/sfx?ref={revision}"
+
+  azure_tenant_id        = var.azure_tenant_id
+  azure_subscription_ids = [var.azure_subscription_id]
+
+  azure_sp_application_id    = azuread_application.signalfx_integration.application_id
+  azure_sp_application_token = azuread_service_principal_password.signalfx_integration_sp_pwd.value
+}
 ```
 
 ## Providers
@@ -17,7 +32,7 @@ module "signalfx-integrations-cloud-azure" {
 | Name | Version |
 |------|---------|
 | azuread | >= 0.8 |
-| azurerm | >= 1.44 |
+| azurerm | >= 2 |
 | random | n/a |
 | signalfx | >= 4.20.1 |
 
