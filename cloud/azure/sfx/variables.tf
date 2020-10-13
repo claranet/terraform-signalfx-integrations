@@ -26,8 +26,6 @@ variable "services" {
   default     = []
 }
 
-# Azure Resoources specific
-
 variable "azure_tenant_id" {
   description = "Azure Tenant ID/Directory ID"
   type        = string
@@ -38,11 +36,12 @@ variable "azure_subscription_ids" {
   type        = list(string)
 }
 
-variable "azure_sp_validation_time" {
-  description = <<EOD
-  Relative duration for which the Password is valid until, for example `240h` (10 days) or `2400h30m`. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
-  Changing this field forces a new resource to be created
-EOD
+variable "azure_sp_application_id" {
+  description = "Azure Service Principal application ID"
   type        = string
-  default     = "${2 * 365 * 24}h" # approximately 2 years
+}
+
+variable "azure_sp_application_token" {
+  description = "Azure Service Principal application token (or password)"
+  type        = string
 }
