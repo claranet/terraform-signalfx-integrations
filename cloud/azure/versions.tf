@@ -5,11 +5,11 @@ terraform {
       version = ">= 4.26.4"
     }
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = ">= 2"
     }
     azuread = {
-      source = "hashicorp/azuread"
+      source  = "hashicorp/azuread"
       version = ">= 1"
     }
   }

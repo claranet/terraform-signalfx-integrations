@@ -22,7 +22,7 @@ variable "poll_rate" {
 
 variable "aws_regions" {
   description = "List of AWS regions that SignalFx should monitor"
-  type        = list
+  type        = list(any)
   default     = ["eu-west-1"]
 }
 
@@ -78,7 +78,7 @@ variable "namespace_sync_rule" {
 
 variable "namespaces" {
   description = "List of default AWS namespaces to sync without any filtering in addition to \"namespace_sync_rule\""
-  type        = list
+  type        = list(any)
   default = [
     #    "AWS/Cassandra",
     "AWS/ApiGateway",

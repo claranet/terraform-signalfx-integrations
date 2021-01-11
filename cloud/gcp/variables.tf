@@ -22,7 +22,7 @@ variable "poll_rate" {
 
 variable "services" {
   description = "GCP service metrics to import. Empty list imports all services"
-  type        = list
+  type        = list(any)
   default     = []
 }
 

@@ -36,6 +36,6 @@ variable "host_severity" {
 
 variable "additional_headers" {
   description = "Any additional headers to send"
-  type        = map
+  type        = map(any)
   default     = {}
 }
