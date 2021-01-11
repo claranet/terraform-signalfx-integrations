@@ -37,7 +37,13 @@ module "signalfx-integrations-cloud-azure" {
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| signalfx\_integration\_name | The SignalFx integration name for Azure |
+| signalfx\_integration\_poll\_rate | The Azure poll rate configured in the SignalFx integration |
+| signalfx\_integration\_services | The list of Azure services configured in SignalFx integration |
+| signalfx\_integration\_subscriptions | The Azure subscriptions ids configured in the SignalFx integration |
+| signalfx\_integration\_tenant | The Azure tenant id configured in the SignalFx integration |
 
 ## Related documentation
 
