@@ -1,15 +1,15 @@
-# ALERTING UnifiedDashboard SignalFx integrations
+# ALERTING Proxy-Alerting SignalFx integrations
 
 ## How to use this module
 
 ```hcl
-module "signalfx-integrations-alerting-dashboardunifie" {
-  source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/dashboardunifie"
+module "signalfx-integrations-alerting-proxy-alerting" {
+  source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/proxy-alerting"
 
-  dashboardunifie_url          = var.dashboardunifie_url
-  username                     = "user"
-  password                     = "password"
-  project_id                   = "MyID"
+  url        = var.proxy_alerting_url
+  username   = var.proxy_alerting_username
+  password   = var.proxy_alerting_password
+  project_id = var.proxy_alerting_synapps_project_id
 }
 
 ```
@@ -24,12 +24,13 @@ module "signalfx-integrations-alerting-dashboardunifie" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| additional\_headers | Any additional headers to send | `map` | `{}` | no |
+| additional\_headers | Any additional headers to send | `map(any)` | `{}` | no |
 | enabled | Whether the Webhook integration is enabled | `bool` | `true` | no |
-| username | username for dashboard | `string` | n/a | yes |
-| password | password for dashboard | `string` | n/a | yes |
-| dashboardunifie\_url | DashboardUnifie API endpoint | `string` | n/a | yes |
-| project\_id | project ID to identify the project | `string` | n/a | yes |
+| password | The proxy-alerting password to authentificate | `string` | n/a | yes |
+| project\_id | Project ID to add to the project-id header | `string` | `null` | no |
+| suffix | Webhook name suffix, will precede the notif period | `string` | `"proxy-alerting"` | no |
+| url | The proxy-alerting URL to use | `string` | `"https://proxy-alerting.fr.clara.net/api/signalfx"` | no |
+| username | The proxy-alerting username to authentificate | `string` | n/a | yes |
 
 ## Outputs
 
@@ -45,7 +46,7 @@ module "signalfx-integrations-alerting-dashboardunifie" {
 
 ## Requirements
 
-You need to configure SignalFx provider and retrieve a DashboardUnifie token.
+You need to configure SignalFx provider and retrieve a proxy-alerting Auth.
 
 ```
 variable "sfx_token" {
@@ -58,10 +59,21 @@ provider "signalfx" {
   api_url    = "https://api.eu0.signalfx.com" # change for your realm
 }
 
-variable "dashboardunifie_token" {
-  description = "The dashboardunifie token specific to your client"
+variable "proxy_alerting_username" {
+  description = "The proxy-alerting username to authentificate"
   type        = string
 }
+
+variable "proxy_alerting_password" {
+  description = "The proxy-alerting password to authentificate"
+  type        = string
+}
+
+variable "proxy_alerting_synapps_project_id" {
+  description = "The Synapps Project ID"
+  type        = string
+}
+
 
 ```
 
@@ -80,7 +92,7 @@ resource "signalfx_detector" "my_detector" {
     severity      = "Severity"
     detect_label  = "Detector Label ..."
     notifications = [
-      module.signalfx-integrations-alerting-dashboardunifie.sfx_integration_notification
+      module.signalfx-integrations-alerting-proxy-alerting.sfx_integration_notification
     ]
   }
 }
