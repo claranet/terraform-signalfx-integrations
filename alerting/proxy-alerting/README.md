@@ -6,10 +6,10 @@
 module "signalfx-integrations-alerting-proxy-alerting" {
   source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/proxy-alerting"
 
-  proxy_alerting_url           = var.proxy_alerting_url
-  username                     = "user"
-  password                     = "password"
-  project_id                   = "MyID"
+  url        = var.proxy_alerting_url
+  username   = "user"
+  password   = var.proxy_alerting_password
+  project_id = "MyID"
 }
 
 ```
@@ -24,12 +24,13 @@ module "signalfx-integrations-alerting-proxy-alerting" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| additional\_headers | Any additional headers to send | `map` | `{}` | no |
+| additional\_headers | Any additional headers to send | `map(any)` | `{}` | no |
 | enabled | Whether the Webhook integration is enabled | `bool` | `true` | no |
-| username | username for dashboard | `string` | n/a | yes |
-| password | password for dashboard | `string` | n/a | yes |
-| proxy\_alerting\_url | proxy-alerting API endpoint | `string` | n/a | yes |
-| project\_id | project ID to identify the project | `string` | n/a | yes |
+| password | The proxy-alerting password to authentificate | `string` | n/a | yes |
+| project\_id | Project ID to add to the project-id header | `string` | `null` | no |
+| suffix | Webhook name suffix, will precede the notif period | `string` | `"proxy-alerting"` | no |
+| url | The proxy-alerting URL to use | `string` | `"https://proxy-alerting.fr.clara.net/api/signalfx"` | no |
+| username | The proxy-alerting username to authentificate | `string` | n/a | yes |
 
 ## Outputs
 
@@ -58,8 +59,8 @@ provider "signalfx" {
   api_url    = "https://api.eu0.signalfx.com" # change for your realm
 }
 
-variable "proxy-alerting_token" {
-  description = "The proxy-alerting token specific to your client"
+variable "proxy_alerting_password" {
+  description = "The proxy-alerting password to authentificate"
   type        = string
 }
 

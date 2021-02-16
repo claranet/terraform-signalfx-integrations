@@ -3,10 +3,10 @@
 variable "suffix" {
   description = "Webhook name suffix, will precede the notif period"
   type        = string
-  default     = "dasboardunifie"
+  default     = "proxy-alerting"
 }
 
-# Dashboard Integration specific
+# Proxy-Alerting Integration specific
 
 variable "enabled" {
   description = "Whether the Webhook integration is enabled"
@@ -14,9 +14,10 @@ variable "enabled" {
   default     = true
 }
 
-variable "dashboardunifie_url" {
-  description = "Dashboard API endpoint"
+variable "url" {
+  description = "The proxy-alerting URL to use"
   type        = string
+  default     = "https://proxy-alerting.fr.clara.net/api/signalfx"
 }
 
 variable "project_id" {
@@ -26,12 +27,12 @@ variable "project_id" {
 }
 
 variable "username" {
-  description = "Dashboard API username"
+  description = "The proxy-alerting username to authentificate"
   type        = string
 }
 
 variable "password" {
-  description = "Dashboard API password"
+  description = "The proxy-alerting password to authentificate"
   type        = string
 }
 
@@ -41,6 +42,3 @@ variable "additional_headers" {
   default     = {}
 }
 
-locals {
-  base64header = base64encode("${var.username}:${var.password}")
-}
