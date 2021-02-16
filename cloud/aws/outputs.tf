@@ -8,13 +8,13 @@ output "aws_role_name" {
   value       = aws_iam_role.sfx_role.name
 }
 
-output "sfx_integration_id" {
+output "aws_integration_id" {
   description = "SignalFx integration ID"
-  value       = signalfx_aws_integration.sfx_integration.integration_id
+  value       = signalfx_aws_integration.aws_integration.integration_id
 }
 
 output "sfx_external_id" {
   description = "SignalFx integration external ID"
-  value       = signalfx_aws_integration.sfx_integration.external_id
+  value       = signalfx_aws_integration.aws_integration.external_id
 }
 

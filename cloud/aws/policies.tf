@@ -85,13 +85,13 @@ data "aws_iam_policy_document" "sfx_policy_doc" {
 
     principals {
       type        = "AWS"
-      identifiers = [signalfx_aws_external_integration.sfx_integration_external.signalfx_aws_account]
+      identifiers = [signalfx_aws_external_integration.aws_integration_external.signalfx_aws_account]
     }
 
     condition {
       test     = "StringEquals"
       variable = "sts:ExternalId"
-      values   = [signalfx_aws_external_integration.sfx_integration_external.external_id]
+      values   = [signalfx_aws_external_integration.aws_integration_external.external_id]
     }
   }
 }
