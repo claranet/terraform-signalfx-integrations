@@ -1,5 +1,5 @@
 resource "azuread_application" "signalfx_integration" {
-  name     = local.integration_name
+  display_name     = local.integration_name
   homepage = "https://www.signalfx.com/"
 
   available_to_other_tenants = false
