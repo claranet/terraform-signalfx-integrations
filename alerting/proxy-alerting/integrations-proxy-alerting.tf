@@ -1,7 +1,7 @@
 resource "signalfx_webhook_integration" "sfx_integration" {
   name    = format("%s", var.suffix)
   enabled = var.enabled
-  url     = var.dashboardunifie_url
+  url     = var.proxy_alerting_url
   headers {
     header_key   = "Authorization"
     header_value = "Basic ${local.base64header}"
