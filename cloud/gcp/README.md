@@ -11,18 +11,43 @@ module "signalfx-integrations-cloud-gcp" {
 
 ```
 
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.26 |
+| google | >= 3 |
+| signalfx | >= 4.26.4 |
+
 ## Providers
 
 | Name | Version |
 |------|---------|
-| google | ~> 3 |
+| google | >= 3 |
 | signalfx | >= 4.26.4 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [google_project_iam_custom_role](https://registry.terraform.io/providers/hashicorp/google/3/docs/resources/project_iam_custom_role) |
+| [google_project_iam_member](https://registry.terraform.io/providers/hashicorp/google/3/docs/resources/project_iam_member) |
+| [google_service_account](https://registry.terraform.io/providers/hashicorp/google/3/docs/resources/service_account) |
+| [google_service_account_key](https://registry.terraform.io/providers/hashicorp/google/3/docs/resources/service_account_key) |
+| [signalfx_gcp_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/resources/gcp_integration) |
+| [signalfx_gcp_services](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/data-sources/gcp_services) |
+| [signalfx_org_token](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/resources/org_token) |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | enabled | Whether the GCP integration is enabled | `bool` | `true` | no |
+| gcp\_compute\_metadata\_whitelist | List of GCP compute metadata to whitelist for use with the SignalFx GCP integration | `list(string)` | `null` | no |
 | gcp\_project\_id | GCP project id for use with the SignalFx GCP integration | `string` | n/a | yes |
 | gcp\_service\_account\_id | GCP service account id for use with the SignalFx GCP integration | `string` | `""` | no |
 | poll\_rate | GCP poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
@@ -34,6 +59,7 @@ module "signalfx-integrations-cloud-gcp" {
 | Name | Description |
 |------|-------------|
 | gcp\_service\_account\_id | The GCP service account id used by SignalFx |
+| signalfx\_named\_token | The SignalFx named token used by the GCP integration |
 
 ## Related documentation
 

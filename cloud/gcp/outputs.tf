@@ -6,7 +6,7 @@ output "gcp_service_account_id" {
 output "signalfx_named_token" {
   description = "The SignalFx named token used by the GCP integration"
   value = {
-    (signalfx_org_token.gcp_claranet_integration.name) = signalfx_org_token.gcp_claranet_integration.secret
+    (signalfx_org_token.gcp_integration.name) = signalfx_org_token.gcp_integration.secret
   }
   sensitive   = true
 }
