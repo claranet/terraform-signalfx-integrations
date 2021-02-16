@@ -3,7 +3,7 @@ locals {
 }
 
 # "Named token to use for ingest on the SignalFx GCP integration"
-resource "signalfx_org_token" "gcp_claranet_integration" {
+resource "signalfx_org_token" "gcp_integration" {
   name        = local.integration_name
   description = "Org token for ingesting data from ${local.integration_name} GCP integration"
 
@@ -22,12 +22,15 @@ resource "signalfx_org_token" "gcp_claranet_integration" {
   # }
 }
 
-resource "signalfx_gcp_integration" "gcp_claranet_integration" {
+data "signalfx_gcp_services" "gcp_services" {
+}
+
+resource "signalfx_gcp_integration" "gcp_integration" {
   name        = local.integration_name
   enabled     = var.enabled
-  named_token = signalfx_org_token.gcp_claranet_integration.name
+  named_token = signalfx_org_token.gcp_integration.name
   poll_rate   = var.poll_rate
-  services    = var.services
+  services    = coalescelist(var.services, data.signalfx_gcp_services.gcp_services.services[*].name)
   whitelist   = var.gcp_compute_metadata_whitelist
 
   project_service_keys {
