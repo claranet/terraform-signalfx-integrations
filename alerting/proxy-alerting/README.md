@@ -7,9 +7,9 @@ module "signalfx-integrations-alerting-proxy-alerting" {
   source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/proxy-alerting"
 
   url        = var.proxy_alerting_url
-  username   = "user"
+  username   = var.proxy_alerting_username
   password   = var.proxy_alerting_password
-  project_id = "MyID"
+  project_id = var.proxy_alerting_synapps_project_id
 }
 
 ```
@@ -46,7 +46,7 @@ module "signalfx-integrations-alerting-proxy-alerting" {
 
 ## Requirements
 
-You need to configure SignalFx provider and retrieve a proxy-alerting token.
+You need to configure SignalFx provider and retrieve a proxy-alerting Auth.
 
 ```
 variable "sfx_token" {
@@ -59,10 +59,21 @@ provider "signalfx" {
   api_url    = "https://api.eu0.signalfx.com" # change for your realm
 }
 
+variable "proxy_alerting_username" {
+  description = "The proxy-alerting username to authentificate"
+  type        = string
+}
+
 variable "proxy_alerting_password" {
   description = "The proxy-alerting password to authentificate"
   type        = string
 }
+
+variable "proxy_alerting_synapps_project_id" {
+  description = "The Synapps Project ID"
+  type        = string
+}
+
 
 ```
 
