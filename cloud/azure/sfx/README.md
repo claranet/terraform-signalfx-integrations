@@ -16,11 +16,30 @@ module "signalfx-integrations-cloud-azure" {
 }
 ```
 
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.26 |
+| signalfx | >= 4.26.4 |
+
 ## Providers
 
 | Name | Version |
 |------|---------|
 | signalfx | >= 4.26.4 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [signalfx_azure_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/resources/azure_integration) |
+| [signalfx_azure_services](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/data-sources/azure_services) |
+| [signalfx_org_token](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/resources/org_token) |
 
 ## Inputs
 
@@ -32,7 +51,7 @@ module "signalfx-integrations-cloud-azure" {
 | azure\_tenant\_id | Azure Tenant ID/Directory ID | `string` | n/a | yes |
 | enabled | Whether the Azure integration is enabled | `bool` | `true` | no |
 | poll\_rate | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
-| services | Azure service metrics to import. Empty list imports all services | `list` | `[]` | no |
+| services | Azure service metrics to import. Empty list imports all services | `list(any)` | `[]` | no |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 
 ## Outputs
@@ -68,5 +87,7 @@ provider "signalfx" {
 
 ## Notes
 
+* This module will create an organization token and use it for ingesting data from the created GCP integration.
+  This allows to distinguish hosts/metrics counts across monitored environments (e.g. staging, preprod, prod) and set specific limits.
 * As for any integration configuration you need a [**session**](https://docs.signalfx.com/en/latest/admin-guide/tokens.html#user-api-access-tokens) token from an admin.
 * You need to have an Azure Service Principal created with `Reader` Role granted over the SignalFX scope (ie: all monitored Azure Subscriptions).

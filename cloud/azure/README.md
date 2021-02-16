@@ -128,6 +128,8 @@ provider "azuread" {
 
 ## Notes
 
+* This module will create an organization token and use it for ingesting data from the created GCP integration.
+  This allows to distinguish hosts/metrics counts across monitored environments (e.g. staging, preprod, prod) and set specific limits.
 * As for any integration configuration you need a [**session**](https://docs.signalfx.com/en/latest/admin-guide/tokens.html#user-api-access-tokens) token from an admin.
 * You need to be an AAD Applications Administrator and Owner on all Azure Subscriptions to monitor.
 
