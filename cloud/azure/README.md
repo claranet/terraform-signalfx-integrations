@@ -27,14 +27,38 @@ module "signalfx-integrations-cloud-azure" {
 }
 ```
 
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.26 |
+| azuread | >= 1.1 |
+| azurerm | >= 2 |
+| signalfx | >= 4.26.4 |
+
 ## Providers
 
 | Name | Version |
 |------|---------|
-| azuread | >= 0.8 |
+| azuread | >= 1.1 |
 | azurerm | >= 2 |
 | random | n/a |
-| signalfx | >= 4.20.1 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| sfx-integration | ./sfx |  |
+
+## Resources
+
+| Name |
+|------|
+| [azuread_application](https://registry.terraform.io/providers/hashicorp/azuread/1.1/docs/resources/application) |
+| [azuread_service_principal](https://registry.terraform.io/providers/hashicorp/azuread/1.1/docs/resources/service_principal) |
+| [azuread_service_principal_password](https://registry.terraform.io/providers/hashicorp/azuread/1.1/docs/resources/service_principal_password) |
+| [azurerm_role_assignment](https://registry.terraform.io/providers/hashicorp/azurerm/2/docs/resources/role_assignment) |
+| [random_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) |
 
 ## Inputs
 
@@ -92,17 +116,19 @@ variable "azure_tenant_id" {
 provider "azurerm" {
   subscription_id = var.azure_subscription_id
   tenant_id       = var.azure_tenant_id
+  features {}
+  #skip_provider_registration = true
 }
 
 provider "azuread" {
-  subscription_id = var.azure_subscription_id
-  tenant_id       = var.azure_tenant_id
+  tenant_id = var.azure_tenant_id
 }
 
 ```
 
 ## Notes
 
+* This module will create an organization token and use it for ingesting data from the created Azure integration.
+  This allows to distinguish hosts/metrics counts across monitored environments (e.g. staging, preprod, prod) and set specific limits.
 * As for any integration configuration you need a [**session**](https://docs.signalfx.com/en/latest/admin-guide/tokens.html#user-api-access-tokens) token from an admin.
 * You need to be an AAD Applications Administrator and Owner on all Azure Subscriptions to monitor.
-

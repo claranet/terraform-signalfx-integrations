@@ -1,6 +1,6 @@
 resource "azuread_application" "signalfx_integration" {
-  name     = local.integration_name
-  homepage = "https://www.signalfx.com/"
+  display_name = local.integration_name
+  homepage     = "https://www.signalfx.com/"
 
   available_to_other_tenants = false
   oauth2_allow_implicit_flow = false
