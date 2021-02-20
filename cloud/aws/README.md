@@ -50,8 +50,10 @@ No Modules.
 | ec2\_namespace\_sync\_rule | Default namespace sync rule with filtering capabilities | <pre>object({<br>    default_action = string<br>    filter_action  = string<br>    filter_source  = string<br>    namespace      = string<br>  })</pre> | <pre>{<br>  "default_action": "Exclude",<br>  "filter_action": "Include",<br>  "filter_source": "filter('aws_tag_sfx_monitored', 'true')",<br>  "namespace": "AWS/EC2"<br>}</pre> | no |
 | enabled | Whether the AWS integration is enabled | `bool` | `true` | no |
 | excluded\_services | List of AWS services to not collect metrics for (do not add an include namespace\_sync\_rule) | `list` | <pre>[<br>  "AWS/RoboMaker",<br>  "AWS/MediaLive"<br>]</pre> | no |
+| host\_or\_usage\_limits | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
 | import\_aws\_usage | Import usage metrics from AWS to use with AWS Cost Optimizer | `bool` | `false` | no |
 | import\_cloudwatch | Import Cloud Watch metrics from AWS | `bool` | `true` | no |
+| notifications\_limits | Where to send notifications about this token's limits | `list(string)` | `null` | no |
 | poll\_rate | AWS poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 | use\_get\_metric\_data | Enable the use of Amazon's GetMetricData for collecting metrics | `bool` | `true` | no |

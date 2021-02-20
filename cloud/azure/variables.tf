@@ -20,6 +20,18 @@ variable "poll_rate" {
   default     = 300
 }
 
+variable "host_or_usage_limits" {
+  description = "Specify Usage-based limits for this integration"
+  type        = map(number)
+  default     = null
+}
+
+variable "notifications_limits" {
+  description = "Where to send notifications about this token's limits"
+  type        = list(string)
+  default     = null
+}
+
 variable "services" {
   description = "Azure service metrics to import. Empty list imports all services"
   type        = list(string)

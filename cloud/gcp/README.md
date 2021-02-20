@@ -50,8 +50,10 @@ No Modules.
 | gcp\_compute\_metadata\_whitelist | List of GCP compute metadata to whitelist for use with the SignalFx GCP integration | `list(string)` | `null` | no |
 | gcp\_project\_id | GCP project id for use with the SignalFx GCP integration | `string` | n/a | yes |
 | gcp\_service\_account\_id | GCP service account id for use with the SignalFx GCP integration | `string` | `""` | no |
+| host\_or\_usage\_limits | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
+| notifications\_limits | Where to send notifications about this token's limits | `list(string)` | `null` | no |
 | poll\_rate | GCP poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
-| services | GCP service metrics to import. Empty list imports all services | `list` | `[]` | no |
+| services | GCP service metrics to import. Empty list imports all services | `list(any)` | `[]` | no |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 
 ## Outputs

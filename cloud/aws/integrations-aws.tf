@@ -2,18 +2,20 @@ resource "signalfx_org_token" "aws_integration" {
   name        = local.integration_name
   description = "Org token for ingesting data from ${local.integration_name} AWS integration"
 
-  # Where to send notifications about this token's limits. Please consult the Notification Format laid out in detectors
-  # notifications = ["Email,foo-alerts@bar.com"]
-  # host_or_usage_limits {
-  #   host_limit                              = 100
-  #   host_notification_threshold             = 90
-  #   container_limit                         = 200
-  #   container_notification_threshold        = 180
-  #   custom_metrics_limit                    = 1000
-  #   custom_metrics_notification_threshold   = 900
-  #   high_res_metrics_limit                  = 1000
-  #   high_res_metrics_notification_threshold = 900
-  # }
+  notifications = var.notifications_limits
+  dynamic "host_or_usage_limits" {
+    for_each = var.host_or_usage_limits != null ? [1] : []
+    content {
+      host_limit = lookup(var.host_or_usage_limits, "host_limit", null)
+      host_notification_threshold = lookup(var.host_or_usage_limits, "host_notification_threshold", null)
+      container_limit = lookup(var.host_or_usage_limits, "container_limit", null)
+      container_notification_threshold = lookup(var.host_or_usage_limits, "container_notification_threshold", null)
+      custom_metrics_limit = lookup(var.host_or_usage_limits, "custom_metrics_limit", null)
+      custom_metrics_notification_threshold = lookup(var.host_or_usage_limits, "custom_metrics_notification_threshold", null)
+      high_res_metrics_limit = lookup(var.host_or_usage_limits, "high_res_metrics_limit", null)
+      high_res_metrics_notification_threshold = lookup(var.host_or_usage_limits, "high_res_metrics_notification_threshold", null)
+    }
+  }
 }
 
 data "signalfx_aws_services" "aws_services" {
