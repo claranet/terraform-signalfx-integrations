@@ -58,7 +58,7 @@ variable "use_get_metric_data" {
 
 variable "excluded_services" {
   description = "List of AWS services to not collect metrics for (do not add an include namespace_sync_rule)"
-  type = list
+  type        = list(any)
   # These services retrieved from aws services data source raise error at plan:
   # > Not valid namespaces: [AWS/RoboMaker, AWS/MediaLive]
   # they will probably work in future version of the provider (tested was v6.6.0)

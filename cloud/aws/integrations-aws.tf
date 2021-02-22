@@ -6,13 +6,13 @@ resource "signalfx_org_token" "aws_integration" {
   dynamic "host_or_usage_limits" {
     for_each = var.host_or_usage_limits != null ? [1] : []
     content {
-      host_limit = lookup(var.host_or_usage_limits, "host_limit", null)
-      host_notification_threshold = lookup(var.host_or_usage_limits, "host_notification_threshold", null)
-      container_limit = lookup(var.host_or_usage_limits, "container_limit", null)
-      container_notification_threshold = lookup(var.host_or_usage_limits, "container_notification_threshold", null)
-      custom_metrics_limit = lookup(var.host_or_usage_limits, "custom_metrics_limit", null)
-      custom_metrics_notification_threshold = lookup(var.host_or_usage_limits, "custom_metrics_notification_threshold", null)
-      high_res_metrics_limit = lookup(var.host_or_usage_limits, "high_res_metrics_limit", null)
+      host_limit                              = lookup(var.host_or_usage_limits, "host_limit", null)
+      host_notification_threshold             = lookup(var.host_or_usage_limits, "host_notification_threshold", null)
+      container_limit                         = lookup(var.host_or_usage_limits, "container_limit", null)
+      container_notification_threshold        = lookup(var.host_or_usage_limits, "container_notification_threshold", null)
+      custom_metrics_limit                    = lookup(var.host_or_usage_limits, "custom_metrics_limit", null)
+      custom_metrics_notification_threshold   = lookup(var.host_or_usage_limits, "custom_metrics_notification_threshold", null)
+      high_res_metrics_limit                  = lookup(var.host_or_usage_limits, "high_res_metrics_limit", null)
       high_res_metrics_notification_threshold = lookup(var.host_or_usage_limits, "high_res_metrics_notification_threshold", null)
     }
   }

@@ -1,13 +1,13 @@
 module "sfx-integration" {
   source = "./sfx"
 
-  enabled   = var.enabled
-  poll_rate = var.poll_rate
+  enabled              = var.enabled
+  poll_rate            = var.poll_rate
   host_or_usage_limits = var.host_or_usage_limits
   notifications_limits = var.notifications_limits
 
-  services  = var.services
-  suffix    = var.suffix
+  services = var.services
+  suffix   = var.suffix
 
   azure_tenant_id            = var.azure_tenant_id
   azure_subscription_ids     = var.azure_subscription_ids

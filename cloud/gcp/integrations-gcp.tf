@@ -1,7 +1,3 @@
-locals {
-  integration_name = "GCPIntegration${var.suffix == "" ? "" : "-${title(var.suffix)}"}"
-}
-
 # "Named token to use for ingest on the SignalFx GCP integration"
 resource "signalfx_org_token" "gcp_integration" {
   name        = local.integration_name
@@ -11,13 +7,13 @@ resource "signalfx_org_token" "gcp_integration" {
   dynamic "host_or_usage_limits" {
     for_each = var.host_or_usage_limits != null ? [1] : []
     content {
-      host_limit = lookup(var.host_or_usage_limits, "host_limit", null)
-      host_notification_threshold = lookup(var.host_or_usage_limits, "host_notification_threshold", null)
-      container_limit = lookup(var.host_or_usage_limits, "container_limit", null)
-      container_notification_threshold = lookup(var.host_or_usage_limits, "container_notification_threshold", null)
-      custom_metrics_limit = lookup(var.host_or_usage_limits, "custom_metrics_limit", null)
-      custom_metrics_notification_threshold = lookup(var.host_or_usage_limits, "custom_metrics_notification_threshold", null)
-      high_res_metrics_limit = lookup(var.host_or_usage_limits, "high_res_metrics_limit", null)
+      host_limit                              = lookup(var.host_or_usage_limits, "host_limit", null)
+      host_notification_threshold             = lookup(var.host_or_usage_limits, "host_notification_threshold", null)
+      container_limit                         = lookup(var.host_or_usage_limits, "container_limit", null)
+      container_notification_threshold        = lookup(var.host_or_usage_limits, "container_notification_threshold", null)
+      custom_metrics_limit                    = lookup(var.host_or_usage_limits, "custom_metrics_limit", null)
+      custom_metrics_notification_threshold   = lookup(var.host_or_usage_limits, "custom_metrics_notification_threshold", null)
+      high_res_metrics_limit                  = lookup(var.host_or_usage_limits, "high_res_metrics_limit", null)
       high_res_metrics_notification_threshold = lookup(var.host_or_usage_limits, "high_res_metrics_notification_threshold", null)
     }
   }

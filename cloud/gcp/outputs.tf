@@ -8,5 +8,5 @@ output "signalfx_named_token" {
   value = {
     (signalfx_org_token.gcp_integration.name) = signalfx_org_token.gcp_integration.secret
   }
-  sensitive   = true
+  sensitive = true
 }
