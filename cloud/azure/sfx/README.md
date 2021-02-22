@@ -50,6 +50,8 @@ No Modules.
 | azure\_subscription\_ids | List of Azure Subscription IDs to monitor | `list(string)` | n/a | yes |
 | azure\_tenant\_id | Azure Tenant ID/Directory ID | `string` | n/a | yes |
 | enabled | Whether the Azure integration is enabled | `bool` | `true` | no |
+| host\_or\_usage\_limits | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
+| notifications\_limits | Where to send notifications about this token's limits | `list(string)` | `null` | no |
 | poll\_rate | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
 | services | Azure service metrics to import. Empty list imports all services | `list(any)` | `[]` | no |
 | suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |

@@ -3,6 +3,9 @@ module "sfx-integration" {
 
   enabled   = var.enabled
   poll_rate = var.poll_rate
+  host_or_usage_limits = var.host_or_usage_limits
+  notifications_limits = var.notifications_limits
+
   services  = var.services
   suffix    = var.suffix
 
