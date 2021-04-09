@@ -41,7 +41,7 @@ variable "services" {
 variable "gcp_compute_metadata_whitelist" {
   description = "List of GCP compute metadata to whitelist for use with the SignalFx GCP integration"
   type        = list(string)
-  default     = null
+  default     = ["sfx_env", "sfx_monitored"]
 }
 
 variable "gcp_project_id" {
