@@ -10,7 +10,6 @@ module "signalfx-integrations-cloud-gcp" {
 }
 
 ```
-
 ## Requirements
 
 | Name | Version |
@@ -47,7 +46,7 @@ No Modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | enabled | Whether the GCP integration is enabled | `bool` | `true` | no |
-| gcp\_compute\_metadata\_whitelist | List of GCP compute metadata to whitelist for use with the SignalFx GCP integration | `list(string)` | `null` | no |
+| gcp\_compute\_metadata\_whitelist | List of GCP compute metadata to whitelist for use with the SignalFx GCP integration | `list(string)` | <pre>[<br>  "sfx_env",<br>  "sfx_monitored"<br>]</pre> | no |
 | gcp\_project\_id | GCP project id for use with the SignalFx GCP integration | `string` | n/a | yes |
 | gcp\_service\_account\_id | GCP service account id for use with the SignalFx GCP integration | `string` | `""` | no |
 | host\_or\_usage\_limits | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
