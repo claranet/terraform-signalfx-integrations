@@ -59,7 +59,7 @@ resource "aws_iam_policy" "sfx_policy" {
             "cloudfront:ListTagsForResource",
             "tag:GetResources",
             "es:ListDomainNames",
-            "es:DescribeElasticsearchDomain"
+            "es:DescribeElasticsearchDomain",
             "budgets:ViewBudget",
             "codedeploy:List*",
             "codedeploy:BatchGet*",
