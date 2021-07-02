@@ -113,7 +113,7 @@ provider "aws" {
   This allows to distinguish hosts/metrics counts across monitored environments (e.g. staging, preprod, prod) and set specific limits.
 * As for any integration configuration you need a [**session**](https://docs.signalfx.com/en/latest/admin-guide/tokens.html#user-api-access-tokens) token from an admin
 * You need to be an IAM admin on AWS account
-* The first apply could fail with error `is not authorized to perform: sts:AssumeRole on resource:` when AWS signalfx integration is configured before the policy attachment to IAM role from AWS side that it is actualy available
+* The apply will wait between the AWS policy attachment to role and the signalfx aws integration creation to prevent permission denied error
 * This module does not support `services` and `custom_cloudwatch_namespaces` because `namespace_sync_rule` and `custom_namespace_sync_rule` are respectively more powerful but in conflict
 
 ### Namespaces filtering
