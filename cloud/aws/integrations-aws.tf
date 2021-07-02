@@ -59,5 +59,10 @@ resource "signalfx_aws_integration" "aws_integration" {
     filter_source  = var.custom_namespace_sync_rule.filter_source
     namespace      = var.custom_namespace_sync_rule.namespace
   }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.sfx_policy_attach,
+    time_sleep.policy_availability
+  ]
 }
 
