@@ -49,12 +49,3 @@ variable "azure_subscription_ids" {
   description = "List of Azure Subscription IDs to monitor"
   type        = list(string)
 }
-
-variable "azure_sp_validation_time" {
-  description = <<EOD
-  Relative duration for which the Password is valid until, for example `240h` (10 days) or `2400h30m`. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
-  Changing this field forces a new resource to be created
-EOD
-  type        = string
-  default     = "${2 * 365 * 24}h" # approximately 2 years
-}
