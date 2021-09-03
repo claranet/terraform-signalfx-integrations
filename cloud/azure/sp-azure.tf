@@ -1,9 +1,5 @@
 resource "azuread_application" "signalfx_integration" {
   display_name = local.integration_name
-  homepage     = "https://www.signalfx.com/"
-
-  available_to_other_tenants = false
-  oauth2_allow_implicit_flow = false
 }
 
 resource "azuread_service_principal" "signalfx_integration_sp" {
@@ -11,15 +7,8 @@ resource "azuread_service_principal" "signalfx_integration_sp" {
   app_role_assignment_required = false
 }
 
-resource "random_password" "signalfx_integration_password" {
-  length  = 32
-  special = true
-}
-
 resource "azuread_service_principal_password" "signalfx_integration_sp_pwd" {
   service_principal_id = azuread_service_principal.signalfx_integration_sp.id
-  value                = random_password.signalfx_integration_password.result
-  end_date_relative    = var.azure_sp_validation_time
 }
 
 resource "azurerm_role_assignment" "signalfx_integration_sp_reader" {

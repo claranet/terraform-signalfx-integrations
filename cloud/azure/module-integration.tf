@@ -1,4 +1,4 @@
-module "sfx-integration" {
+module "sfx_integration" {
   source = "./sfx"
 
   enabled              = var.enabled

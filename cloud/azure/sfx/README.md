@@ -15,7 +15,7 @@ module "signalfx-integrations-cloud-azure" {
   azure_sp_application_token = azuread_service_principal_password.signalfx_integration_sp_pwd.value
 }
 ```
-
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -31,15 +31,15 @@ module "signalfx-integrations-cloud-azure" {
 
 ## Modules
 
-No Modules.
+No modules.
 
 ## Resources
 
-| Name |
-|------|
-| [signalfx_azure_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/resources/azure_integration) |
-| [signalfx_azure_services](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/data-sources/azure_services) |
-| [signalfx_org_token](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/resources/org_token) |
+| Name | Type |
+|------|------|
+| [signalfx_azure_integration.azure_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/resources/azure_integration) | resource |
+| [signalfx_org_token.azure_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/resources/org_token) | resource |
+| [signalfx_azure_services.azure_services](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/data-sources/azure_services) | data source |
 
 ## Inputs
 
@@ -65,7 +65,7 @@ No Modules.
 | signalfx\_integration\_services | The list of Azure services configured in SignalFx integration |
 | signalfx\_integration\_subscriptions | The Azure subscriptions ids configured in the SignalFx integration |
 | signalfx\_integration\_tenant | The Azure tenant id configured in the SignalFx integration |
-
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 [Official documentation](https://docs.signalfx.com/en/latest/integrations/azure-info.html#connect-to-microsoft-azure)
