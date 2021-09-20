@@ -72,7 +72,7 @@ No modules.
 
 [Official documentation](https://docs.signalfx.com/en/latest/integrations/azure-info.html#connect-to-microsoft-azure)
 
-## Requirements
+## Setup
 
 You need to configure your SignalFx providers.
 Credentials could be set in your `terraform.tfvars`.

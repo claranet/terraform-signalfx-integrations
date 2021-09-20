@@ -69,7 +69,7 @@ No modules.
 
 [Official documentation](https://docs.signalfx.com/en/latest/integrations/google-cloud-platform.html#connect-to-google-cloud-platform)
 
-## Requirements
+## Setup
 
 **WARNING:** When the `gcp_service_account_id` parameter is not provided, this module creates a service account and uses the `google_project_iam_member` resource which is not compatible with IAM permissions set externally and authoritatively managed with the `google_project_iam_policy` resource. If you happen to use the `google_project_iam_policy` resource on the provided GCP project,
 make sure to provide the `gcp_service_account_id` parameter and ensure the corresponding service account has the appropriate IAM permissions on the GCP project:

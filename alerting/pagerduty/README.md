@@ -57,7 +57,7 @@ No modules.
 * [Official documentation](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#integrate-with-pagerduty)
 * [Pagerduty documentation](https://www.pagerduty.com/docs/guides/signalfx-integration-guide/)
 
-## Requirements
+## Setup
 
 You need to configure SignalFx provider and retrieve a PagerDuty integration key.
 Credentials could be set in your `terraform.tfvars`.

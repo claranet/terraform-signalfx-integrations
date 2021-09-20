@@ -63,7 +63,7 @@ No modules.
 
 * [Official documentation](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#send-notifications-via-a-webhook-url)
 
-## Requirements
+## Setup
 
 You need to configure SignalFx provider and retrieve a proxy-alerting Auth.
 

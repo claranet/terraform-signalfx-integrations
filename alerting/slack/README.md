@@ -59,7 +59,7 @@ No modules.
 * [Official documentation](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#integrate-with-slack)
 * [Slack documentation](https://api.slack.com/messaging/webhooks)
 
-## Requirements
+## Setup
 
 You need to configure SignalFx provider and retrieve a Slack webhook.
 Credentials could be set in your `terraform.tfvars`.

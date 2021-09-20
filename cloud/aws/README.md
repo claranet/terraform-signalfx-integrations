@@ -75,7 +75,7 @@ No modules.
 
 [Official documentation](https://docs.signalfx.com/en/latest/integrations/amazon-web-services.html#connect-to-aws-cloudwatch)
 
-## Requirements
+## Setup
 
 You need to configure your AWS and SignalFx providers.
 Credentials could be set in your `terraform.tfvars`.
