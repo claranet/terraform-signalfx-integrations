@@ -12,28 +12,47 @@ module "signalfx-integrations-alerting-slack" {
 
 ```
 
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
+| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | >= 4.26.4 |
+
 ## Providers
 
 | Name | Version |
 |------|---------|
-| signalfx | ~> 4 |
+| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | >= 4.26.4 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [signalfx_slack_integration.sfx_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/resources/slack_integration) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| enabled | Whether the PagerDuty integration is enabled | `bool` | `true` | no |
-| slack\_channel\_name | Slack channel on which send the notifications (without #, only used to generated formatted notification output). | `string` | n/a | yes |
-| suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
-| webhook\_url | Slack webhook URL | `string` | n/a | yes |
+| <a name="input_enabled"></a> [enabled](#input\_enabled) | Whether the PagerDuty integration is enabled | `bool` | `true` | no |
+| <a name="input_slack_channel_name"></a> [slack\_channel\_name](#input\_slack\_channel\_name) | Slack channel on which send the notifications (without #, only used to generated formatted notification output). | `string` | n/a | yes |
+| <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
+| <a name="input_webhook_url"></a> [webhook\_url](#input\_webhook\_url) | Slack webhook URL | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| sfx\_integration\_id | SignalFx integration ID |
-| sfx\_integration\_name | SignalFx integration name |
-| sfx\_integration\_notification | SignalFx integration formatted notification |
+| <a name="output_sfx_integration_id"></a> [sfx\_integration\_id](#output\_sfx\_integration\_id) | SignalFx integration ID |
+| <a name="output_sfx_integration_name"></a> [sfx\_integration\_name](#output\_sfx\_integration\_name) | SignalFx integration name |
+| <a name="output_sfx_integration_notification"></a> [sfx\_integration\_notification](#output\_sfx\_integration\_notification) | SignalFx integration formatted notification |
+<!-- END_TF_DOCS -->
 
 ## Related documentation
 

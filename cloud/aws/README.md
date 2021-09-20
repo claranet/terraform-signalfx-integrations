@@ -9,63 +9,67 @@ module "signalfx-integrations-cloud-aws" {
 
 ```
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26 |
-| aws | >= 2 |
-| signalfx | >= 4.26.4 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 2 |
+| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | >= 6.7.7 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 2 |
-| signalfx | >= 4.26.4 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 2 |
+| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | >= 6.7.7 |
+| <a name="provider_time"></a> [time](#provider\_time) | n/a |
 
 ## Modules
 
-No Modules.
+No modules.
 
 ## Resources
 
-| Name |
-|------|
-| [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/iam_policy) |
-| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/2/docs/data-sources/iam_policy_document) |
-| [aws_iam_role](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/iam_role) |
-| [aws_iam_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/2/docs/resources/iam_role_policy_attachment) |
-| [signalfx_aws_external_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/resources/aws_external_integration) |
-| [signalfx_aws_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/resources/aws_integration) |
-| [signalfx_aws_services](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/data-sources/aws_services) |
-| [signalfx_org_token](https://registry.terraform.io/providers/splunk-terraform/signalfx/4.26.4/docs/resources/org_token) |
+| Name | Type |
+|------|------|
+| [aws_iam_policy.sfx_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_role.sfx_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy_attachment.sfx_policy_attach](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [signalfx_aws_external_integration.aws_integration_external](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/resources/aws_external_integration) | resource |
+| [signalfx_aws_integration.aws_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/resources/aws_integration) | resource |
+| [signalfx_org_token.aws_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/resources/org_token) | resource |
+| [time_sleep.policy_availability](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
+| [aws_iam_policy_document.sfx_policy_doc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [signalfx_aws_services.aws_services](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/data-sources/aws_services) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| aws\_regions | List of AWS regions that SignalFx should monitor | `list(any)` | <pre>[<br>  "eu-west-1"<br>]</pre> | no |
-| custom\_namespace\_sync\_rule | Each element controls the data collected by SignalFx for the specified namespace | <pre>object({<br>    default_action = string<br>    filter_action  = string<br>    filter_source  = string<br>    namespace      = string<br>  })</pre> | <pre>{<br>  "default_action": null,<br>  "filter_action": null,<br>  "filter_source": null,<br>  "namespace": "*"<br>}</pre> | no |
-| ec2\_namespace\_sync\_rule | Default namespace sync rule with filtering capabilities | <pre>object({<br>    default_action = string<br>    filter_action  = string<br>    filter_source  = string<br>    namespace      = string<br>  })</pre> | <pre>{<br>  "default_action": "Exclude",<br>  "filter_action": "Include",<br>  "filter_source": "filter('aws_tag_sfx_monitored', 'true')",<br>  "namespace": "AWS/EC2"<br>}</pre> | no |
-| enabled | Whether the AWS integration is enabled | `bool` | `true` | no |
-| excluded\_services | List of AWS services to not collect metrics for (do not add an include namespace\_sync\_rule) | `list` | <pre>[<br>  "AWS/RoboMaker",<br>  "AWS/MediaLive"<br>]</pre> | no |
-| host\_or\_usage\_limits | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
-| import\_aws\_usage | Import usage metrics from AWS to use with AWS Cost Optimizer | `bool` | `false` | no |
-| import\_cloudwatch | Import Cloud Watch metrics from AWS | `bool` | `true` | no |
-| notifications\_limits | Where to send notifications about this token's limits | `list(string)` | `null` | no |
-| poll\_rate | AWS poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
-| suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
-| use\_get\_metric\_data | Enable the use of Amazon's GetMetricData for collecting metrics | `bool` | `true` | no |
+| <a name="input_aws_regions"></a> [aws\_regions](#input\_aws\_regions) | List of AWS regions that SignalFx should monitor | `list(any)` | <pre>[<br>  "eu-west-1"<br>]</pre> | no |
+| <a name="input_custom_namespace_sync_rule"></a> [custom\_namespace\_sync\_rule](#input\_custom\_namespace\_sync\_rule) | Each element controls the data collected by SignalFx for the specified namespace | <pre>object({<br>    default_action = string<br>    filter_action  = string<br>    filter_source  = string<br>    namespace      = string<br>  })</pre> | <pre>{<br>  "default_action": null,<br>  "filter_action": null,<br>  "filter_source": null,<br>  "namespace": "*"<br>}</pre> | no |
+| <a name="input_ec2_namespace_sync_rule"></a> [ec2\_namespace\_sync\_rule](#input\_ec2\_namespace\_sync\_rule) | Default namespace sync rule with filtering capabilities | <pre>object({<br>    default_action = string<br>    filter_action  = string<br>    filter_source  = string<br>    namespace      = string<br>  })</pre> | <pre>{<br>  "default_action": "Exclude",<br>  "filter_action": "Include",<br>  "filter_source": "filter('aws_tag_sfx_monitored', 'true')",<br>  "namespace": "AWS/EC2"<br>}</pre> | no |
+| <a name="input_enabled"></a> [enabled](#input\_enabled) | Whether the AWS integration is enabled | `bool` | `true` | no |
+| <a name="input_excluded_services"></a> [excluded\_services](#input\_excluded\_services) | List of AWS services to not collect metrics for (do not add an include namespace\_sync\_rule) | `list(any)` | `[]` | no |
+| <a name="input_host_or_usage_limits"></a> [host\_or\_usage\_limits](#input\_host\_or\_usage\_limits) | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
+| <a name="input_import_aws_usage"></a> [import\_aws\_usage](#input\_import\_aws\_usage) | Import usage metrics from AWS to use with AWS Cost Optimizer | `bool` | `false` | no |
+| <a name="input_import_cloudwatch"></a> [import\_cloudwatch](#input\_import\_cloudwatch) | Import Cloud Watch metrics from AWS | `bool` | `true` | no |
+| <a name="input_notifications_limits"></a> [notifications\_limits](#input\_notifications\_limits) | Where to send notifications about this token's limits | `list(string)` | `null` | no |
+| <a name="input_poll_rate"></a> [poll\_rate](#input\_poll\_rate) | AWS poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
+| <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
+| <a name="input_use_get_metric_data"></a> [use\_get\_metric\_data](#input\_use\_get\_metric\_data) | Enable the use of Amazon's GetMetricData for collecting metrics | `bool` | `true` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| aws\_integration\_id | SignalFx integration ID |
-| aws\_role\_arn | The role ARN of the SignalFx integration |
-| aws\_role\_name | The IAM role name of the SignalFx integration |
-| sfx\_external\_id | SignalFx integration external ID |
+| <a name="output_aws_integration_id"></a> [aws\_integration\_id](#output\_aws\_integration\_id) | SignalFx integration ID |
+| <a name="output_aws_role_arn"></a> [aws\_role\_arn](#output\_aws\_role\_arn) | The role ARN of the SignalFx integration |
+| <a name="output_aws_role_name"></a> [aws\_role\_name](#output\_aws\_role\_name) | The IAM role name of the SignalFx integration |
+| <a name="output_sfx_external_id"></a> [sfx\_external\_id](#output\_sfx\_external\_id) | SignalFx integration external ID |
+<!-- END_TF_DOCS -->
 
 ## Related documentation
 
