@@ -32,23 +32,23 @@ module "signalfx-integrations-cloud-azure" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26 |
-| azuread | >= 2 |
-| azurerm | >= 2 |
-| signalfx | >= 4.26.4 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
+| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | >= 2 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2 |
+| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | >= 6.7.2 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| azuread | >= 2 |
-| azurerm | >= 2 |
+| <a name="provider_azuread"></a> [azuread](#provider\_azuread) | >= 2 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 2 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| sfx\_integration | ./sfx | n/a |
+| <a name="module_sfx_integration"></a> [sfx\_integration](#module\_sfx\_integration) | ./sfx | n/a |
 
 ## Resources
 
@@ -63,34 +63,35 @@ module "signalfx-integrations-cloud-azure" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| azure\_subscription\_ids | List of Azure Subscription IDs to monitor | `list(string)` | n/a | yes |
-| azure\_tenant\_id | Azure Tenant ID/Directory ID | `string` | n/a | yes |
-| enabled | Whether the Azure integration is enabled | `bool` | `true` | no |
-| host\_or\_usage\_limits | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
-| notifications\_limits | Where to send notifications about this token's limits | `list(string)` | `null` | no |
-| poll\_rate | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
-| services | Azure service metrics to import. Empty list imports all services | `list(string)` | `[]` | no |
-| suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
+| <a name="input_azure_subscription_ids"></a> [azure\_subscription\_ids](#input\_azure\_subscription\_ids) | List of Azure Subscription IDs to monitor | `list(string)` | n/a | yes |
+| <a name="input_azure_tenant_id"></a> [azure\_tenant\_id](#input\_azure\_tenant\_id) | Azure Tenant ID/Directory ID | `string` | n/a | yes |
+| <a name="input_enabled"></a> [enabled](#input\_enabled) | Whether the Azure integration is enabled | `bool` | `true` | no |
+| <a name="input_host_or_usage_limits"></a> [host\_or\_usage\_limits](#input\_host\_or\_usage\_limits) | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
+| <a name="input_notifications_limits"></a> [notifications\_limits](#input\_notifications\_limits) | Where to send notifications about this token's limits | `list(string)` | `null` | no |
+| <a name="input_poll_rate"></a> [poll\_rate](#input\_poll\_rate) | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
+| <a name="input_services"></a> [services](#input\_services) | Azure service metrics to import. Empty list imports all services | `list(string)` | `[]` | no |
+| <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| azure\_ad\_sp\_app\_id | The Azure Service Principal App ID of the SignalFx integration |
-| azure\_ad\_sp\_object\_id | The Azure Service Principal Object ID of the SignalFx integration |
-| azure\_ad\_sp\_secret\_key | The Azure Service Principal secret key of the SignalFx integration |
-| azure\_ad\_sp\_validity\_end\_date | The Azure Service Principal validity date of the SignalFx integration |
-| signalfx\_integration\_name | The SignalFx integration name for Azure |
-| signalfx\_integration\_poll\_rate | The Azure poll rate configured in the SignalFx integration |
-| signalfx\_integration\_services | The list of Azure services configured in SignalFx integration |
-| signalfx\_integration\_subscriptions | The Azure subscriptions ids configured in the SignalFx integration |
-| signalfx\_integration\_tenant | The Azure tenant id configured in the SignalFx integration |
+| <a name="output_azure_ad_sp_app_id"></a> [azure\_ad\_sp\_app\_id](#output\_azure\_ad\_sp\_app\_id) | The Azure Service Principal App ID of the SignalFx integration |
+| <a name="output_azure_ad_sp_object_id"></a> [azure\_ad\_sp\_object\_id](#output\_azure\_ad\_sp\_object\_id) | The Azure Service Principal Object ID of the SignalFx integration |
+| <a name="output_azure_ad_sp_secret_key"></a> [azure\_ad\_sp\_secret\_key](#output\_azure\_ad\_sp\_secret\_key) | The Azure Service Principal secret key of the SignalFx integration |
+| <a name="output_azure_ad_sp_validity_end_date"></a> [azure\_ad\_sp\_validity\_end\_date](#output\_azure\_ad\_sp\_validity\_end\_date) | The Azure Service Principal validity date of the SignalFx integration |
+| <a name="output_signalfx_integration_name"></a> [signalfx\_integration\_name](#output\_signalfx\_integration\_name) | The SignalFx integration name for Azure |
+| <a name="output_signalfx_integration_poll_rate"></a> [signalfx\_integration\_poll\_rate](#output\_signalfx\_integration\_poll\_rate) | The Azure poll rate configured in the SignalFx integration |
+| <a name="output_signalfx_integration_services"></a> [signalfx\_integration\_services](#output\_signalfx\_integration\_services) | The list of Azure services configured in SignalFx integration |
+| <a name="output_signalfx_integration_subscriptions"></a> [signalfx\_integration\_subscriptions](#output\_signalfx\_integration\_subscriptions) | The Azure subscriptions ids configured in the SignalFx integration |
+| <a name="output_signalfx_integration_tenant"></a> [signalfx\_integration\_tenant](#output\_signalfx\_integration\_tenant) | The Azure tenant id configured in the SignalFx integration |
 <!-- END_TF_DOCS -->
+
 ## Related documentation
 
 [Official documentation](https://docs.signalfx.com/en/latest/integrations/azure-info.html#connect-to-microsoft-azure)
 
-## Requirements
+## Setup
 
 You need to configure your Azure and SignalFx providers.
 Credentials could be set in your `terraform.tfvars`.
