@@ -38,6 +38,12 @@ variable "services" {
   default     = []
 }
 
+variable "excluded_services" {
+  description = "List of Azure services to not collect metrics for (do not add an include namespace_sync_rule)"
+  type        = list(string)
+  default     = []
+}
+
 # Azure Resoources specific
 
 variable "azure_tenant_id" {
