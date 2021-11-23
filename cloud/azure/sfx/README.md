@@ -46,6 +46,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_additional_services "></a> [additional\_services ](#input\_additional\_services ) | Azure service metrics to import as custom metrics for services not available in SFX | `list(string)` | `null` | no |
 | <a name="input_azure_sp_application_id"></a> [azure\_sp\_application\_id](#input\_azure\_sp\_application\_id) | Azure Service Principal application ID | `string` | n/a | yes |
 | <a name="input_azure_sp_application_token"></a> [azure\_sp\_application\_token](#input\_azure\_sp\_application\_token) | Azure Service Principal application token (or password) | `string` | n/a | yes |
 | <a name="input_azure_subscription_ids"></a> [azure\_subscription\_ids](#input\_azure\_subscription\_ids) | List of Azure Subscription IDs to monitor | `list(string)` | n/a | yes |

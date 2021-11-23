@@ -44,6 +44,12 @@ variable "excluded_services" {
   default     = []
 }
 
+variable "additional_services " {
+  description = "Azure service metrics to import as custom metrics for services not available in SFX"
+  type        = list(string)
+  default     = null
+}
+
 variable "azure_tenant_id" {
   description = "Azure Tenant ID/Directory ID"
   type        = string
