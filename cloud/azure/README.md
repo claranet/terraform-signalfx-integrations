@@ -66,7 +66,7 @@ module "signalfx-integrations-cloud-azure" {
 | <a name="input_azure_subscription_ids"></a> [azure\_subscription\_ids](#input\_azure\_subscription\_ids) | List of Azure Subscription IDs to monitor | `list(string)` | n/a | yes |
 | <a name="input_azure_tenant_id"></a> [azure\_tenant\_id](#input\_azure\_tenant\_id) | Azure Tenant ID/Directory ID | `string` | n/a | yes |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Whether the Azure integration is enabled | `bool` | `true` | no |
-| <a name="input_excluded_services"></a> [excluded\_services](#input\_excluded\_services) | List of Azure services to not collect metrics for (do not add an include namespace\_sync\_rule) | `list(string)` | `[]` | no |
+| <a name="input_excluded_services"></a> [excluded\_services](#input\_excluded\_services) | List of Azure services to not collect metrics for (removed from the `services` list) | `list(string)` | `[]` | no |
 | <a name="input_host_or_usage_limits"></a> [host\_or\_usage\_limits](#input\_host\_or\_usage\_limits) | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
 | <a name="input_notifications_limits"></a> [notifications\_limits](#input\_notifications\_limits) | Where to send notifications about this token's limits | `list(string)` | `null` | no |
 | <a name="input_poll_rate"></a> [poll\_rate](#input\_poll\_rate) | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |

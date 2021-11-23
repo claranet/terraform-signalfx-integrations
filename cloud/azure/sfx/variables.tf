@@ -39,7 +39,7 @@ variable "services" {
 }
 
 variable "excluded_services" {
-  description = "List of Azure services to not collect metrics for (do not add an include namespace_sync_rule)"
+  description = "List of Azure services to not collect metrics for (removed from the `services` list)"
   type        = list(string)
   default     = []
 }
