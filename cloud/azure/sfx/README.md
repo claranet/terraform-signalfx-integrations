@@ -46,7 +46,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_additional_services "></a> [additional\_services ](#input\_additional\_services ) | Azure service metrics to import as custom metrics for services not available in SFX | `list(string)` | `null` | no |
+| <a name="input_additional_services"></a> [additional\_services](#input\_additional\_services) | Not yet officially supported Azure resource types to sync with SignalFx as custom metrics | `list(string)` | `null` | no |
 | <a name="input_azure_sp_application_id"></a> [azure\_sp\_application\_id](#input\_azure\_sp\_application\_id) | Azure Service Principal application ID | `string` | n/a | yes |
 | <a name="input_azure_sp_application_token"></a> [azure\_sp\_application\_token](#input\_azure\_sp\_application\_token) | Azure Service Principal application token (or password) | `string` | n/a | yes |
 | <a name="input_azure_subscription_ids"></a> [azure\_subscription\_ids](#input\_azure\_subscription\_ids) | List of Azure Subscription IDs to monitor | `list(string)` | n/a | yes |
@@ -97,3 +97,10 @@ provider "signalfx" {
   This allows to distinguish hosts/metrics counts across monitored environments (e.g. staging, preprod, prod) and set specific limits.
 * As for any integration configuration you need a [**session**](https://docs.signalfx.com/en/latest/admin-guide/tokens.html#user-api-access-tokens) token from an admin.
 * You need to have an Azure Service Principal created with `Reader` Role granted over the SignalFX scope (ie: all monitored Azure Subscriptions).
+
+**`additional_services` parameter**
+
+A resource type you specify in additionalServices must meet the following criteria:
+ - The type is a Azure GenericResource. For resource types that have hierarchical structure, only the root resource type is a GenericResource.
+ - For example, a Storage Account type can have a File Service type, and a File Service type can have a File Storage type. In this case, only Storage Account is a GenericResource.
+ - The resource type stores its metrics in Azure Monitor. To learn more about Azure Monitor, refer to the Microsoft Azure documentation.
