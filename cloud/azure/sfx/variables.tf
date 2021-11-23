@@ -45,7 +45,7 @@ variable "excluded_services" {
 }
 
 variable "additional_services " {
-  description = "Azure service metrics to import as custom metrics for services not available in SFX"
+  description = "Not yet officially supported azure resource types to sync with SignalFx as custom metrics"
   type        = list(string)
   default     = null
 }
