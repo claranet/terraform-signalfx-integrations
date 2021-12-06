@@ -18,14 +18,14 @@ module "signalfx-integrations-cloud-gcp" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | >= 3 |
-| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | >= 6.5.0 |
+| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | >= 6.7.10 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | >= 3 |
-| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | >= 6.5.0 |
+| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | >= 6.7.10 |
 
 ## Modules
 
