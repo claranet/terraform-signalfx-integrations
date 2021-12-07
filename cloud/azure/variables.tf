@@ -44,6 +44,12 @@ variable "excluded_services" {
   default     = []
 }
 
+variable "additional_services" {
+  description = "Not yet officially supported Azure resource types to sync with SignalFx as custom metrics"
+  type        = list(string)
+  default     = null
+}
+
 # Azure Resoources specific
 
 variable "azure_tenant_id" {
