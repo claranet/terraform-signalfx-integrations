@@ -16,14 +16,14 @@ module "signalfx-integrations-cloud-aws" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.26 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 2 |
-| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | >= 6.7.7 |
+| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | >= 6.7.10 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 2 |
-| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | >= 6.7.7 |
+| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | >= 6.7.10 |
 | <a name="provider_time"></a> [time](#provider\_time) | n/a |
 
 ## Modules
