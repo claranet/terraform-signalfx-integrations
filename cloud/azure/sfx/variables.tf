@@ -34,7 +34,13 @@ variable "notifications_limits" {
 
 variable "services" {
   description = "Azure service metrics to import. Empty list imports all services"
-  type        = list(any)
+  type        = list(string)
+  default     = []
+}
+
+variable "excluded_services" {
+  description = "List of Azure services to not collect metrics for (removed from the `services` list)"
+  type        = list(string)
   default     = []
 }
 
