@@ -36,7 +36,7 @@ variable "password" {
   type        = string
 }
 
-variable "X-Alerting-Business-Hours-Only" {
+variable "alerting_ho" {
   type        = bool
   default     = true
   description = "HO / HNO header"
