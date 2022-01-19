@@ -36,6 +36,12 @@ variable "password" {
   type        = string
 }
 
+variable "X-Alerting-Business-Hours-Only" {
+  type        = bool
+  default     = true
+  description = "HO / HNO header"
+}
+
 variable "additional_headers" {
   description = "Any additional headers to send"
   type        = map(any)
