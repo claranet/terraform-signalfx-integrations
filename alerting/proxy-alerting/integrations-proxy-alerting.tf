@@ -7,6 +7,10 @@ resource "signalfx_webhook_integration" "sfx_integration" {
     header_value = "Basic ${local.base64header}"
   }
   headers {
+    header_key   = "X-Alerting-Business-Hours-Only"
+    header_value = var.alerting_ho
+  }
+  headers {
     header_key   = "project-id"
     header_value = var.project_id
   }
