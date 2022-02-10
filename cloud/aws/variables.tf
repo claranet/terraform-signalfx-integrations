@@ -56,6 +56,18 @@ variable "use_get_metric_data" {
   default     = true
 }
 
+variable "use_metric_streams_sync" {
+  description = "Enable the use of Amazon's Cloudwatch Metric Streams for ingesting metrics. When setting it to `true`, you also need to set `create_metric_streams_iam` to `true`"
+  type        = bool
+  default     = false
+}
+
+variable "create_metric_streams_iam" {
+  description = "Enable the creation of the IAM role required to enable Amazon's Cloudwatch Metric Streams for ingesting metrics. This is separate from the `use_metric_streams_sync` parameter as disabling Metric Streams still requires the existence of the IAM role"
+  type        = bool
+  default     = false
+}
+
 variable "excluded_services" {
   description = "List of AWS services to not collect metrics for (do not add an include namespace_sync_rule)"
   type        = list(any)
