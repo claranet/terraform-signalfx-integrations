@@ -37,6 +37,7 @@ resource "signalfx_aws_integration" "aws_integration" {
   import_cloud_watch         = var.import_cloudwatch
   enable_aws_usage           = var.import_aws_usage
   use_get_metric_data_method = var.use_get_metric_data
+  use_metric_streams_sync    = var.use_metric_streams_sync
 
   namespace_sync_rule {
     default_action = var.ec2_namespace_sync_rule.default_action
@@ -62,7 +63,8 @@ resource "signalfx_aws_integration" "aws_integration" {
 
   depends_on = [
     aws_iam_role_policy_attachment.sfx_policy_attach,
-    time_sleep.policy_availability
+    aws_iam_role_policy_attachment.sfx_metric_streams_policy_attach,
+    time_sleep.policy_availability,
   ]
 }
 

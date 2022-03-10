@@ -83,6 +83,32 @@ resource "aws_iam_policy" "sfx_policy" {
 EOF
 }
 
+resource "aws_iam_policy" "sfx_metric_streams_policy" {
+  count       = var.create_metric_streams_iam ? 1 : 0
+  name        = "SignalFxIntegrationMetricStreamsPolicy${var.suffix == "" ? "" : "-${title(var.suffix)}"}"
+  description = "SignalFx AWS Policy for ingesting Cloudwatch Metric Streams"
+  policy      = <<EOF
+{
+"Version": "2012-10-17",
+"Statement": [
+    {
+        "Action": [
+            "cloudwatch:ListMetricStreams",
+            "cloudwatch:GetMetricStream",
+            "cloudwatch:PutMetricStream",
+            "cloudwatch:DeleteMetricStream",
+            "cloudwatch:StartMetricStreams",
+            "cloudwatch:StopMetricStreams",
+            "iam:PassRole"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+        }
+    ]
+}
+EOF
+}
+
 data "aws_iam_policy_document" "sfx_policy_doc" {
   statement {
     actions = ["sts:AssumeRole"]
