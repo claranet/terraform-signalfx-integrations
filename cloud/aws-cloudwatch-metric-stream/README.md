@@ -93,14 +93,37 @@ variable "aws_token" {
 }
 
 variable "aws_region" {
-  type = string
+  default = "eu-west-1"
+  type     = string
 }
-
 provider "aws" {
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
   token      = var.aws_token
   region     = var.aws_region
+}
+
+# Optional - example of configuration in multiple regions
+
+## we declare a new provider in a different region than the default (un-aliased) one
+provider "aws" {
+  alias = "us-west-1"
+
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
+  token      = var.aws_token
+  region     = "us-west-1"
+}
+
+## we import again this module but passing explicitly the provider for the other region
+module "signalfx-integrations-cloud-aws-cloudwatch-metric-stream-us-west-1" {
+  providers = {
+    aws = aws.us-west-1
+  }
+
+  source = "github.com/claranet/terraform-signalfx-integrations.git//cloud/aws-cloudwatch-metric-stream?ref={revision}"
+  sfx_access_token = var.sfx_access_token
+  sfx_ingest_url = var.sfx_ingest_url
 }
 ```
 
