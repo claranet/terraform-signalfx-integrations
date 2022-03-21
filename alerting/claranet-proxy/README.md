@@ -1,10 +1,10 @@
-# ALERTING Proxy-Alerting SignalFx integrations
+# ALERTING Claranet-Proxy SignalFx integrations
 
 ## How to use this module
 
 ```hcl
-module "signalfx-integrations-alerting-proxy-alerting" {
-  source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/proxy-alerting"
+module "signalfx-integrations-alerting-claranet-proxy" {
+  source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/claranet-proxy"
 
   url        = var.proxy_alerting_url
   username   = var.proxy_alerting_username
@@ -46,7 +46,7 @@ No modules.
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Whether the Webhook integration is enabled | `bool` | `true` | no |
 | <a name="input_password"></a> [password](#input\_password) | The proxy-alerting password to authentificate | `string` | n/a | yes |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | Project ID to add to the project-id header | `string` | `null` | no |
-| <a name="input_suffix"></a> [suffix](#input\_suffix) | Webhook name suffix, will precede the notif period | `string` | `"proxy-alerting"` | no |
+| <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix for the integration name | `string` | `""` | no |
 | <a name="input_url"></a> [url](#input\_url) | The proxy-alerting URL to use | `string` | `"https://proxy-alerting.fr.clara.net/api/signalfx"` | no |
 | <a name="input_username"></a> [username](#input\_username) | The proxy-alerting username to authentificate | `string` | n/a | yes |
 
@@ -93,7 +93,6 @@ variable "proxy_alerting_synapps_project_id" {
   type        = string
 }
 
-
 ```
 
 ## Notes
@@ -111,7 +110,7 @@ resource "signalfx_detector" "my_detector" {
     severity      = "Severity"
     detect_label  = "Detector Label ..."
     notifications = [
-      module.signalfx-integrations-alerting-proxy-alerting.sfx_integration_notification
+      module.signalfx-integrations-alerting-claranet-proxy.sfx_integration_notification
     ]
   }
 }

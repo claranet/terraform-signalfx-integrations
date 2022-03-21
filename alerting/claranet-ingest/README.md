@@ -1,10 +1,10 @@
-# ALERTING Ingest-Alerting SignalFx integrations
+# ALERTING Claranet-Ingest SignalFx integrations
 
 ## How to use this module
 
 ```hcl
-module "signalfx-integrations-alerting-ingest-alerting" {
-  source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/ingest-alerting"
+module "signalfx-integrations-alerting-claranet-ingest" {
+  source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/claranet-ingest"
 
   token   = var.ingest_alerting_token
 }
@@ -58,7 +58,7 @@ No modules.
 
 ## Setup
 
-You need to configure SignalFx provider and retrieve a ingest-alerting Auth.
+You need to configure SignalFx provider and retrieve an ingest-alerting Auth.
 
 ```
 variable "sfx_token" {
@@ -92,7 +92,7 @@ resource "signalfx_detector" "my_detector" {
     severity      = "Severity"
     detect_label  = "Detector Label ..."
     notifications = [
-      module.signalfx-integrations-alerting-ingest-alerting.sfx_integration_notification
+      module.signalfx-integrations-alerting-claranet-ingest.sfx_integration_notification
     ]
   }
 }
