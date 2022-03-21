@@ -1,9 +1,9 @@
 # Global
 
 variable "suffix" {
-  description = "Webhook name suffix, will precede the notif period"
+  description = "Optional suffix to identify and avoid duplication of unique resources"
   type        = string
-  default     = "ingest-alerting"
+  default     = ""
 }
 
 # Ingest-Alerting Integration specific

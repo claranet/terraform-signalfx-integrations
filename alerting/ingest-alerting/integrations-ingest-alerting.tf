@@ -1,5 +1,5 @@
 resource "signalfx_webhook_integration" "sfx_integration" {
-  name    = format("%s", var.suffix)
+  name    = local.integration_name
   enabled = var.enabled
   url     = var.url
   headers {
