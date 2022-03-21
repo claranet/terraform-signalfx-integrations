@@ -1,19 +1,14 @@
-# ALERTING Proxy-Alerting SignalFx integrations
+# ALERTING Claranet-Ingest SignalFx integrations
 
 ## How to use this module
 
 ```hcl
-module "signalfx-integrations-alerting-proxy-alerting" {
-  source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/proxy-alerting"
+module "signalfx-integrations-alerting-claranet-ingest" {
+  source  = "github.com/claranet/terraform-signalfx-integrations.git//alerting/claranet-ingest"
 
-  url        = var.proxy_alerting_url
-  username   = var.proxy_alerting_username
-  password   = var.proxy_alerting_password
-  project_id = var.proxy_alerting_synapps_project_id
+  token   = var.ingest_alerting_token
 }
-
 ```
-
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -44,11 +39,9 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_headers"></a> [additional\_headers](#input\_additional\_headers) | Any additional headers to send | `map(any)` | `{}` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Whether the Webhook integration is enabled | `bool` | `true` | no |
-| <a name="input_password"></a> [password](#input\_password) | The proxy-alerting password to authentificate | `string` | n/a | yes |
-| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | Project ID to add to the project-id header | `string` | `null` | no |
-| <a name="input_suffix"></a> [suffix](#input\_suffix) | Webhook name suffix, will precede the notif period | `string` | `"proxy-alerting"` | no |
-| <a name="input_url"></a> [url](#input\_url) | The proxy-alerting URL to use | `string` | `"https://proxy-alerting.fr.clara.net/api/signalfx"` | no |
-| <a name="input_username"></a> [username](#input\_username) | The proxy-alerting username to authentificate | `string` | n/a | yes |
+| <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix for the integration name | `string` | `""` | no |
+| <a name="input_token"></a> [token](#input\_token) | The ingest-alerting JWT token to authentificate | `string` | n/a | yes |
+| <a name="input_url"></a> [url](#input\_url) | The ingest-alerting URL to use | `string` | `"https://ingest-alerting.fr.clara.net/splunk"` | no |
 
 ## Outputs
 
@@ -65,7 +58,7 @@ No modules.
 
 ## Setup
 
-You need to configure SignalFx provider and retrieve a proxy-alerting Auth.
+You need to configure SignalFx provider and retrieve an ingest-alerting Auth.
 
 ```
 variable "sfx_token" {
@@ -78,22 +71,10 @@ provider "signalfx" {
   api_url    = "https://api.eu0.signalfx.com" # change for your realm
 }
 
-variable "proxy_alerting_username" {
-  description = "The proxy-alerting username to authentificate"
+variable "ingest_alerting_token" {
+  description = "The ingest-alerting token to authentificate"
   type        = string
 }
-
-variable "proxy_alerting_password" {
-  description = "The proxy-alerting password to authentificate"
-  type        = string
-}
-
-variable "proxy_alerting_synapps_project_id" {
-  description = "The Synapps Project ID"
-  type        = string
-}
-
-
 ```
 
 ## Notes
@@ -111,7 +92,7 @@ resource "signalfx_detector" "my_detector" {
     severity      = "Severity"
     detect_label  = "Detector Label ..."
     notifications = [
-      module.signalfx-integrations-alerting-proxy-alerting.sfx_integration_notification
+      module.signalfx-integrations-alerting-claranet-ingest.sfx_integration_notification
     ]
   }
 }

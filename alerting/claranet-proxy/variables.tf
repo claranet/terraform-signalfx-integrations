@@ -1,9 +1,9 @@
 # Global
 
 variable "suffix" {
-  description = "Webhook name suffix, will precede the notif period"
+  description = "Optional suffix for the integration name"
   type        = string
-  default     = "proxy-alerting"
+  default     = ""
 }
 
 # Proxy-Alerting Integration specific
