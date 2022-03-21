@@ -39,7 +39,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_headers"></a> [additional\_headers](#input\_additional\_headers) | Any additional headers to send | `map(any)` | `{}` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Whether the Webhook integration is enabled | `bool` | `true` | no |
-| <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
+| <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix for the integration name | `string` | `""` | no |
 | <a name="input_token"></a> [token](#input\_token) | The ingest-alerting JWT token to authentificate | `string` | n/a | yes |
 | <a name="input_url"></a> [url](#input\_url) | The ingest-alerting URL to use | `string` | `"https://ingest-alerting.fr.clara.net/splunk"` | no |
 

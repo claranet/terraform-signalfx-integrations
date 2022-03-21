@@ -1,7 +1,7 @@
 # Global
 
 variable "suffix" {
-  description = "Optional suffix to identify and avoid duplication of unique resources"
+  description = "Optional suffix for the integration name"
   type        = string
   default     = ""
 }
