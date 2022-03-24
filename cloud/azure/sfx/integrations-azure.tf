@@ -12,8 +12,9 @@ resource "signalfx_azure_integration" "azure_integration" {
   app_id     = var.azure_sp_application_id
   secret_key = var.azure_sp_application_token
 
-  services           = setsubtract(local.azure_services, var.excluded_services)
-  additionalServices = var.additional_services
+  services              = setsubtract(local.azure_services, var.excluded_services)
+  additional_services   = var.additional_services
+  resource_filter_rules = var.resource_filter_rules
 
   tenant_id     = var.azure_tenant_id
   subscriptions = var.azure_subscription_ids

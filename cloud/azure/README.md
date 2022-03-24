@@ -71,6 +71,7 @@ module "signalfx-integrations-cloud-azure" {
 | <a name="input_host_or_usage_limits"></a> [host\_or\_usage\_limits](#input\_host\_or\_usage\_limits) | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
 | <a name="input_notifications_limits"></a> [notifications\_limits](#input\_notifications\_limits) | Where to send notifications about this token's limits | `list(string)` | `null` | no |
 | <a name="input_poll_rate"></a> [poll\_rate](#input\_poll\_rate) | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
+| <a name="input_resource_filter_rules"></a> [resource\_filter\_rules](#input\_resource\_filter\_rules) | List of rules for filtering Azure resources by their tags. Each filter follows "filter('key', 'value')". Referenced keys are limited to tags and must start with the "azure\_tag\_" prefix | `list(string)` | `null` | no |
 | <a name="input_services"></a> [services](#input\_services) | Azure service metrics to import. Empty list imports all services | `list(string)` | `[]` | no |
 | <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 

@@ -50,6 +50,12 @@ variable "additional_services" {
   default     = null
 }
 
+variable "resource_filter_rules" {
+  description = "List of rules for filtering Azure resources by their tags. Each filter follows \"filter('key', 'value')\". Referenced keys are limited to tags and must start with the \"azure_tag_\" prefix"
+  type        = list(string)
+  default     = null
+}
+
 variable "azure_tenant_id" {
   description = "Azure Tenant ID/Directory ID"
   type        = string
