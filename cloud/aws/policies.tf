@@ -59,10 +59,6 @@ resource "aws_iam_policy" "sfx_policy" {
             "lambda:GetAlias",
             "lambda:ListFunctions",
             "lambda:ListTags",
-            "logs:DeleteSubscriptionFilter",
-            "logs:DescribeLogGroups",
-            "logs:DescribeSubscriptionFilters",
-            "logs:PutSubscriptionFilter",
             "organizations:DescribeOrganization",
             "rds:DescribeDBClusters",
             "rds:DescribeDBInstances",
@@ -71,12 +67,9 @@ resource "aws_iam_policy" "sfx_policy" {
             "redshift:DescribeLoggingStatus",
             "route53:List*",
             "s3:GetBucketLocation",
-            "s3:GetBucketLogging",
-            "s3:GetBucketNotification",
             "s3:GetBucketTagging",
             "s3:ListAllMyBuckets",
             "s3:ListBucket",
-            "s3:PutBucketNotification",
             "sqs:GetQueueAttributes",
             "sqs:ListQueues",
             "sqs:ListQueueTags",
@@ -113,6 +106,32 @@ resource "aws_iam_policy" "sfx_metric_streams_policy" {
             "cloudwatch:StartMetricStreams",
             "cloudwatch:StopMetricStreams",
             "iam:PassRole"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+        }
+    ]
+}
+EOF
+}
+
+resource "aws_iam_policy" "sfx_logs_policy" {
+  count       = var.create_logs_iam ? 1 : 0
+  name        = "SignalFxIntegrationLogsPolicy${var.suffix == "" ? "" : "-${title(var.suffix)}"}"
+  description = "SignalFx AWS Policy for ingesting Cloudwatch Logs"
+  policy      = <<EOF
+{
+"Version": "2012-10-17",
+"Statement": [
+    {
+        "Action": [
+            "logs:DeleteSubscriptionFilter",
+            "logs:DescribeLogGroups",
+            "logs:DescribeSubscriptionFilters",
+            "logs:PutSubscriptionFilter",
+            "s3:GetBucketLogging",
+            "s3:GetBucketNotification",
+            "s3:PutBucketNotification"
         ],
         "Effect": "Allow",
         "Resource": "*"

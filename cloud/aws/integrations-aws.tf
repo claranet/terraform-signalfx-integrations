@@ -36,8 +36,11 @@ resource "signalfx_aws_integration" "aws_integration" {
   poll_rate                  = var.poll_rate
   import_cloud_watch         = var.import_cloudwatch
   enable_aws_usage           = var.import_aws_usage
+  enable_check_large_volume  = var.enable_check_large_volume
+  enable_logs_sync           = var.enable_logs_sync
   use_get_metric_data_method = var.use_get_metric_data
   use_metric_streams_sync    = var.use_metric_streams_sync
+
 
   namespace_sync_rule {
     default_action = var.ec2_namespace_sync_rule.default_action
@@ -54,17 +57,31 @@ resource "signalfx_aws_integration" "aws_integration" {
     }
   }
 
-  custom_namespace_sync_rule {
-    default_action = var.custom_namespace_sync_rule.default_action
-    filter_action  = var.custom_namespace_sync_rule.filter_action
-    filter_source  = var.custom_namespace_sync_rule.filter_source
-    namespace      = var.custom_namespace_sync_rule.namespace
+  dynamic "custom_namespace_sync_rule" {
+    for_each = var.custom_namespace_sync_rules != null ? var.custom_namespace_sync_rules : []
+    content {
+      default_action = lookup(custom_namespace_sync_rule.value, "default_action", null)
+      filter_action  = lookup(custom_namespace_sync_rule.value, "filter_action", null)
+      filter_source  = lookup(custom_namespace_sync_rule.value, "filter_source", null)
+      namespace      = custom_namespace_sync_rule.value.namespace
+    }
+  }
+
+  dynamic "metric_stats_to_sync" {
+    for_each = var.metrics_stats_to_sync != null ? var.metrics_stats_to_sync : []
+    content {
+      namespace = metric_stats_to_sync.value.namespace
+      metric    = metric_stats_to_sync.value.metric
+      stats     = metric_stats_to_sync.value.stats
+    }
   }
 
   depends_on = [
     aws_iam_role_policy_attachment.sfx_policy_attach,
     aws_iam_role_policy_attachment.sfx_metric_streams_policy_attach,
+    aws_iam_role_policy_attachment.sfx_logs_policy_attach,
     time_sleep.policy_availability,
+    time_sleep.logs_policy_availability,
   ]
 }
 
