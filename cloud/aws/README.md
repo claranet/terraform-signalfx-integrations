@@ -136,11 +136,21 @@ provider "aws" {
 - You need to be an IAM admin on AWS account
 - The apply will wait between the AWS policy attachment to role and the signalfx aws integration creation to prevent permission denied error
 - This module does not support `services` and `custom_cloudwatch_namespaces` because `namespace_sync_rule` and `custom_namespace_sync_rule` are respectively more powerful but in conflict
+
+### CloudWatch Metric Streams
+
 - When enabling AWS Cloudwatch Metric Streams with `use_metric_streams_sync = true`, you also need to set `create_metric_streams_iam` to `true`. Then you need to create the Kinesis Data Firehose resources by yourself in each of the regions where you want to collect metrics from. You can use the [`aws-cloudwatch-metric-stream`](https://github.com/claranet/terraform-signalfx-integrations/tree/master/cloud/aws-cloudwatch-metric-stream) module to do this.
 - When disabling AWS Cloudwatch Metric Streams, make sure to apply in two phases:
   - first change the `use_metric_streams_sync` parameter from `true` to `false` and run `terraform apply` to let it deprovision the AWS Cloudwatch Metric Streams resources it created,
   - then change `create_metric_streams_iam` from `true` to `false` and run `terraform apply` to destroy the IAM role.
     If you do not follow that process, the AWS integration will end up in `CANCELATION_FAILED` status.
+
+### CloudWatch Logs sync (BETA)
+
+- When enabling AWS Cloudwatch Logs sync with `enable_logs_sync = true`, you also need to set `create_logs_iam` to `true`. 
+- When disabling AWS Cloudwatch Logs, make sure to apply in two phases:
+  - first change the `enable_logs_sync` parameter from `true` to `false` and run `terraform apply`
+  - then change `create_logs_iam` from `true` to `false` and run `terraform apply` to destroy the IAM role.
 
 ### Namespaces filtering
 
