@@ -24,3 +24,20 @@ resource "time_sleep" "policy_availability" {
 
   create_duration = "15s"
 }
+
+resource "aws_iam_role_policy_attachment" "sfx_logs_policy_attach" {
+  count      = var.create_logs_iam ? 1 : 0
+  role       = aws_iam_role.sfx_role.name
+  policy_arn = aws_iam_policy.sfx_logs_policy[0].arn
+}
+
+# workaround to be sure the policy is really applied to the role before to try to create the integration
+resource "time_sleep" "logs_policy_availability" {
+  depends_on = [
+    aws_iam_role_policy_attachment.sfx_policy_attach,
+    aws_iam_role_policy_attachment.sfx_logs_policy_attach,
+  ]
+
+  create_duration = "15s"
+}
+
