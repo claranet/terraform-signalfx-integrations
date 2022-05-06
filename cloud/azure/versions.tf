@@ -2,16 +2,16 @@ terraform {
   required_providers {
     signalfx = {
       source  = "splunk-terraform/signalfx"
-      version = ">= 6.11.0"
+      version = "~> 6.11"
     }
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2"
+      version = "~> 3.1"
     }
     azuread = {
       source  = "hashicorp/azuread"
-      version = ">= 2"
+      version = "~> 2.0"
     }
   }
-  required_version = ">= 0.12.26"
+  required_version = ">= 0.13"
 }
