@@ -50,6 +50,31 @@ variable "additional_services" {
   default     = null
 }
 
+variable "resource_filter_rules" {
+  description = "List of rules for filtering Azure resources by their tags. Each filter follows \"filter('key', 'value')\". Referenced keys are limited to tags and must start with the \"azure_tag_\" prefix"
+  type = list(object({
+    filter = object({
+      source = string
+    })
+  }))
+  default = null
+}
+
+variable "sync_guest_os_namespaces" {
+  description = "Sync additional namespaces for VMs (including VMs in scale sets) to pull metrics from Azure Diagnostics Extensision when enabled"
+  type        = bool
+  default     = false
+}
+
+variable "custom_namespaces_per_service" {
+  description = "List of maps for which each service key will be synced metrics from associated namespaces in addition to the default namespaces. It provides more fine-grained controle compared to the boolean convenience parameter \"sync_guest_os_namespaces\""
+  type = list(object({
+    service    = string
+    namespaces = list(string)
+  }))
+  default = null
+}
+
 variable "azure_tenant_id" {
   description = "Azure Tenant ID/Directory ID"
   type        = string

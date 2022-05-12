@@ -12,8 +12,26 @@ resource "signalfx_azure_integration" "azure_integration" {
   app_id     = var.azure_sp_application_id
   secret_key = var.azure_sp_application_token
 
-  services           = setsubtract(local.azure_services, var.excluded_services)
-  additionalServices = var.additional_services
+  services            = setsubtract(local.azure_services, var.excluded_services)
+  additional_services = var.additional_services
+
+  dynamic "resource_filter_rules" {
+    for_each = var.resource_filter_rules != null ? var.resource_filter_rules : []
+    content {
+      filter = {
+        source = lookup(resource_filter_rules.value.filter, "source", null)
+      }
+    }
+  }
+
+  sync_guest_os_namespaces = var.sync_guest_os_namespaces
+  dynamic "custom_namespaces_per_service" {
+    for_each = var.custom_namespaces_per_service != null ? var.custom_namespaces_per_service : []
+    content {
+      service    = custom_namespaces_per_service.value.service
+      namespaces = custom_namespaces_per_service.value.namespaces
+    }
+  }
 
   tenant_id     = var.azure_tenant_id
   subscriptions = var.azure_subscription_ids
