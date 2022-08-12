@@ -86,6 +86,12 @@ variable "create_metric_streams_iam" {
   default     = false
 }
 
+variable "included_services" {
+  description = "List of AWS services to collect metrics for (By default it will collect every AWS service supported by splunk)"
+  type        = list(any)
+  default     = []
+}
+
 variable "excluded_services" {
   description = "List of AWS services to not collect metrics for (do not add an include namespace_sync_rule)"
   type        = list(any)

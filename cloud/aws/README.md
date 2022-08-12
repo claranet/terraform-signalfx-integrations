@@ -65,6 +65,7 @@ No modules.
 | <a name="input_host_or_usage_limits"></a> [host\_or\_usage\_limits](#input\_host\_or\_usage\_limits) | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
 | <a name="input_import_aws_usage"></a> [import\_aws\_usage](#input\_import\_aws\_usage) | Import usage metrics from AWS to use with AWS Cost Optimizer | `bool` | `false` | no |
 | <a name="input_import_cloudwatch"></a> [import\_cloudwatch](#input\_import\_cloudwatch) | Import Cloud Watch metrics from AWS | `bool` | `true` | no |
+| <a name="input_included_services"></a> [included\_services](#input\_included\_services) | List of AWS services to collect metrics for (By default it will collect every AWS service supported by splunk) | `list(any)` | `[]` | no |
 | <a name="input_metrics_stats_to_sync"></a> [metrics\_stats\_to\_sync](#input\_metrics\_stats\_to\_sync) | List of objects defining namespace, metric and stats to change the standard set of statistics retrieved by integration by specific ones. Useful to fetch statistics not available by default like percentile | <pre>list(object({<br>    namespace = string<br>    metric    = string<br>    stats     = list(string)<br>  }))</pre> | `null` | no |
 | <a name="input_notifications_limits"></a> [notifications\_limits](#input\_notifications\_limits) | Where to send notifications about this token's limits | `list(string)` | `null` | no |
 | <a name="input_poll_rate"></a> [poll\_rate](#input\_poll\_rate) | AWS poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
