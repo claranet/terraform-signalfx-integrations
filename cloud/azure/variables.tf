@@ -88,7 +88,7 @@ variable "azure_subscription_ids" {
 }
 
 variable "azure_spn_token_validity_duration" {
-  description = "Azure Service Principal token/password duration before it expires. Default to 2 years."
+  description = "Azure Service Principal token/password duration before it expires. Defaults to 2 years. Notation documentation: https://pkg.go.dev/time#ParseDuration"
   type        = string
   default     = "${24 * 365 * 2}h" # 2 years
 }
