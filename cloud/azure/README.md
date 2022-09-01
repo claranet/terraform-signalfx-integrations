@@ -64,6 +64,7 @@ module "signalfx-integrations-cloud-azure" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_services"></a> [additional\_services](#input\_additional\_services) | Not yet officially supported Azure resource types to sync with SignalFx as custom metrics | `list(string)` | `null` | no |
+| <a name="input_azure_spn_token_validity_duration"></a> [azure\_spn\_token\_validity\_duration](#input\_azure\_spn\_token\_validity\_duration) | Azure Service Principal token/password duration before it expires. Default to 2 years. | `string` | `"17520h"` | no |
 | <a name="input_azure_subscription_ids"></a> [azure\_subscription\_ids](#input\_azure\_subscription\_ids) | List of Azure Subscription IDs to monitor | `list(string)` | n/a | yes |
 | <a name="input_azure_tenant_id"></a> [azure\_tenant\_id](#input\_azure\_tenant\_id) | Azure Tenant ID/Directory ID | `string` | n/a | yes |
 | <a name="input_custom_namespaces_per_service"></a> [custom\_namespaces\_per\_service](#input\_custom\_namespaces\_per\_service) | List of maps for which each service key will be synced metrics from associated namespaces in addition to the default namespaces. It provides more fine-grained controle compared to the boolean convenience parameter "sync\_guest\_os\_namespaces" | <pre>list(object({<br>    service    = string<br>    namespaces = list(string)<br>  }))</pre> | `null` | no |
