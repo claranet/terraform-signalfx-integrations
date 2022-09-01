@@ -9,7 +9,7 @@ resource "azuread_service_principal" "signalfx_integration_sp" {
 
 resource "azuread_service_principal_password" "signalfx_integration_sp_pwd" {
   service_principal_id = azuread_service_principal.signalfx_integration_sp.id
-  end_date_relative    = "${var.azure_spn_token_validity_duration_hours}h"
+  end_date_relative    = var.azure_spn_token_validity_duration
 }
 
 resource "azurerm_role_assignment" "signalfx_integration_sp_reader" {

@@ -87,8 +87,8 @@ variable "azure_subscription_ids" {
   type        = list(string)
 }
 
-variable "azure_spn_token_validity_duration_hours" {
-  description = "Azure Service Principal token/password duration in hours before it expires. Default to 2 years."
-  type        = number
-  default     = 24 * 365 * 2 # 2 years
+variable "azure_spn_token_validity_duration" {
+  description = "Azure Service Principal token/password duration before it expires. Default to 2 years."
+  type        = string
+  default     = "${24 * 365 * 2}h" # 2 years
 }
