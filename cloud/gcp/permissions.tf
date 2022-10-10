@@ -11,6 +11,9 @@ resource "google_project_iam_custom_role" "sfx_role" {
     "resourcemanager.projects.get",
     "compute.instances.list",
     "compute.machineTypes.list",
+    "container.clusters.list",
+    "container.nodes.list",
+    "container.pods.list",
     "spanner.instances.list",
     "storage.buckets.list",
   ]
