@@ -5,12 +5,16 @@ resource "google_project_iam_custom_role" "sfx_role" {
   title       = "SignalFx${var.suffix == "" ? "" : " - ${title(var.suffix)}"}"
   description = "SignalFx viewer role for monitoring${var.suffix == "" ? "" : " for ${lower(var.suffix)}"}"
   permissions = [
+    # For reference, see https://docs.splunk.com/Observability/gdi/get-data-in/connect/gcp/gcp.html#gcp-one
     "monitoring.metricDescriptors.get",
     "monitoring.metricDescriptors.list",
     "monitoring.timeSeries.list",
     "resourcemanager.projects.get",
     "compute.instances.list",
     "compute.machineTypes.list",
+    "container.clusters.list",
+    "container.nodes.list",
+    "container.pods.list",
     "spanner.instances.list",
     "storage.buckets.list",
   ]
