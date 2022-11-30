@@ -65,8 +65,9 @@ No modules.
 | <a name="input_host_or_usage_limits"></a> [host\_or\_usage\_limits](#input\_host\_or\_usage\_limits) | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
 | <a name="input_import_aws_usage"></a> [import\_aws\_usage](#input\_import\_aws\_usage) | Import usage metrics from AWS to use with AWS Cost Optimizer | `bool` | `false` | no |
 | <a name="input_import_cloudwatch"></a> [import\_cloudwatch](#input\_import\_cloudwatch) | Import Cloud Watch metrics from AWS | `bool` | `true` | no |
-| <a name="input_included_services"></a> [included\_services](#input\_included\_services) | List of AWS services to collect metrics for (By default it will collect every AWS service supported by splunk) | `list(any)` | `[]` | no |
+| <a name="input_included_services"></a> [included\_services](#input\_included\_services) | List of AWS services to collect metrics for (By default it will collect every supported AWS services) | `list(any)` | `[]` | no |
 | <a name="input_metrics_stats_to_sync"></a> [metrics\_stats\_to\_sync](#input\_metrics\_stats\_to\_sync) | List of objects defining namespace, metric and stats to change the standard set of statistics retrieved by integration by specific ones. Useful to fetch statistics not available by default like percentile | <pre>list(object({<br>    namespace = string<br>    metric    = string<br>    stats     = list(string)<br>  }))</pre> | `null` | no |
+| <a name="input_namespace_sync_rules_filters"></a> [namespace\_sync\_rules\_filters](#input\_namespace\_sync\_rules\_filters) | Define a map of filters to apply on included services, each key is the namespace name and values are key values pairs defining default\_action, filter\_action and filter\_source. | `map(any)` | `null` | no |
 | <a name="input_notifications_limits"></a> [notifications\_limits](#input\_notifications\_limits) | Where to send notifications about this token's limits | `list(string)` | `null` | no |
 | <a name="input_poll_rate"></a> [poll\_rate](#input\_poll\_rate) | AWS poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
 | <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
@@ -171,3 +172,23 @@ Feel free to override `excluded_services` list to prevent collection of **any** 
 If there is any default value set for `excluded_services` this is probably because they are returned by the [data
 source](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/data-sources/aws_services) but not yet supported for configuration of the integration.
 You can try to remove them and if you do not get error like `Not valid namespaces: [AWS/RoboMaker, AWS/MediaLive]` please open pull request to remove them from the default value.
+
+Instead of filtering out every service you do not want to get metrics from, you can only include the services you need. You can also filter the metric name to fetch for each namespace. This is useful to reduce the number of MTS and to reduce AWS CloudWatch cost.
+
+```
+included_services = [
+  "AWS/ELB",
+  "AWS/ApplicationELB",
+  "AWS/RDS",
+  "AWS/ElastiCache",
+  "AWS/ES"
+]
+
+namespace_sync_rules_filters = {
+  "AWS/ELB" = {
+    default_action = "Exclude"
+    filter_action  = "Include"
+    filter_source = "filter('sf_metric','Latency','HTTPCode_ELB_5XX','RequestCount','HTTPCode_ELB_4XX','HTTPCode_Backend_5XX','HTTPCode_Backend_4XX','HealthyHostCount','UnHealthyHostCount')"
+  }
+}
+```
