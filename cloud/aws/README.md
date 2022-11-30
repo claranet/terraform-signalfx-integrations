@@ -173,7 +173,7 @@ If there is any default value set for `excluded_services` this is probably becau
 source](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/data-sources/aws_services) but not yet supported for configuration of the integration.
 You can try to remove them and if you do not get error like `Not valid namespaces: [AWS/RoboMaker, AWS/MediaLive]` please open pull request to remove them from the default value.
 
-Instead of filtering out every service you do not want to get metrics from, you can only include the services you need. You can also filter the metric name to fetch for each namespace. This is useful to reduce the number of MTS and to reduce AWS CloudWatch cost.
+Instead of filtering out every service you do not want to get metrics from, you can only include the services you need. You can also filter the metrics to fetch for each namespace. This is useful to reduce the number of MTS and to reduce AWS CloudWatch costs.
 
 ```
 included_services = [
