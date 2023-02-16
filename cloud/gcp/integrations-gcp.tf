@@ -23,12 +23,12 @@ data "signalfx_gcp_services" "gcp_services" {
 }
 
 resource "signalfx_gcp_integration" "gcp_integration" {
-  name        = local.integration_name
-  enabled     = var.enabled
-  named_token = signalfx_org_token.gcp_integration.name
-  poll_rate   = var.poll_rate
-  services    = coalescelist(var.services, data.signalfx_gcp_services.gcp_services.services[*].name)
-  whitelist   = var.gcp_compute_metadata_whitelist
+  name         = local.integration_name
+  enabled      = var.enabled
+  named_token  = signalfx_org_token.gcp_integration.name
+  poll_rate    = var.poll_rate
+  services     = coalescelist(var.services, data.signalfx_gcp_services.gcp_services.services[*].name)
+  include_list = var.gcp_compute_metadata_whitelist
 
   project_service_keys {
     project_id  = var.gcp_project_id
