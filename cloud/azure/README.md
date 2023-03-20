@@ -77,6 +77,7 @@ module "signalfx-integrations-cloud-azure" {
 | <a name="input_services"></a> [services](#input\_services) | Azure service metrics to import. Empty list imports all services | `list(string)` | `[]` | no |
 | <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 | <a name="input_sync_guest_os_namespaces"></a> [sync\_guest\_os\_namespaces](#input\_sync\_guest\_os\_namespaces) | Sync additional namespaces for VMs (including VMs in scale sets) to pull metrics from Azure Diagnostics Extensision when enabled | `bool` | `false` | no |
+| <a name="input_signalfx_token_name"></a> [signalfx_token_name](#input\_signalfx_token_name) | Optional signalfx token name. To use a sfx token already existing | `string` | `""` | no |
 
 ## Outputs
 
