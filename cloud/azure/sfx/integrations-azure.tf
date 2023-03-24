@@ -38,6 +38,7 @@ resource "signalfx_azure_integration" "azure_integration" {
 }
 
 # "Named token to use for ingest on the SignalFx Azure integration"
+# We need a specific token to avoid using the Default organization one.
 resource "signalfx_org_token" "azure_integration" {
   count       = var.signalfx_token_name != null ? 0 : 1
   name        = local.integration_name
