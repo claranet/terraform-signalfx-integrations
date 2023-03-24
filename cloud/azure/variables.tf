@@ -94,7 +94,7 @@ variable "azure_spn_token_validity_duration" {
 }
 
 variable "signalfx_token_name" {
-  description = "Name of sfx token to use"
+  description = "Name of already existing SFX token to use"
   type        = string
   default     = null
 }
