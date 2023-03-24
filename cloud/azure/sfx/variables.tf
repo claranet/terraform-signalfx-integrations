@@ -96,7 +96,7 @@ variable "azure_sp_application_token" {
 }
 
 variable "signalfx_token_name" {
-  description = "Name of sfx token to use"
+  description = "Name of already existing SFX token to use"
   type        = string
   default     = null
 }
