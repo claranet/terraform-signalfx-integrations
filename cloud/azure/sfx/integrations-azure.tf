@@ -4,7 +4,7 @@ data "signalfx_azure_services" "azure_services" {
 resource "signalfx_azure_integration" "azure_integration" {
   name        = local.integration_name
   enabled     = var.enabled
-  named_token = var.signalfx_token_name != null ? var.signalfx_token_name : signalfx_org_token.azure_integration[0].name
+  named_token = var.signalfx_token_name != null ? var.signalfx_token_name : one(signalfx_org_token.azure_integration[*].name)
   environment = "azure"
 
   poll_rate = var.poll_rate
