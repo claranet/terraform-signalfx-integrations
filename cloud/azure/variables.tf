@@ -92,3 +92,9 @@ variable "azure_spn_token_validity_duration" {
   type        = string
   default     = "${24 * 365 * 2}h" # 2 years
 }
+
+variable "signalfx_token_name" {
+  description = "Name of already existing SFX token to use"
+  type        = string
+  default     = null
+}

@@ -4,7 +4,7 @@ data "signalfx_azure_services" "azure_services" {
 resource "signalfx_azure_integration" "azure_integration" {
   name        = local.integration_name
   enabled     = var.enabled
-  named_token = signalfx_org_token.azure_integration.name
+  named_token = var.signalfx_token_name != null ? var.signalfx_token_name : one(signalfx_org_token.azure_integration[*].name)
   environment = "azure"
 
   poll_rate = var.poll_rate
@@ -38,7 +38,9 @@ resource "signalfx_azure_integration" "azure_integration" {
 }
 
 # "Named token to use for ingest on the SignalFx Azure integration"
+# We need a specific token to avoid using the Default organization one.
 resource "signalfx_org_token" "azure_integration" {
+  count       = var.signalfx_token_name != null && var.signalfx_token_name != "" ? 0 : 1
   name        = local.integration_name
   description = "Org token for ingesting data from ${local.integration_name} Azure integration"
 

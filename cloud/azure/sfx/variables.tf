@@ -94,3 +94,9 @@ variable "azure_sp_application_token" {
   description = "Azure Service Principal application token (or password)"
   type        = string
 }
+
+variable "signalfx_token_name" {
+  description = "Name of already existing SFX token to use"
+  type        = string
+  default     = null
+}
