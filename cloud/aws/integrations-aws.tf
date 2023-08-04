@@ -18,9 +18,6 @@ resource "signalfx_org_token" "aws_integration" {
   }
 }
 
-data "signalfx_aws_services" "aws_services" {
-}
-
 resource "signalfx_aws_external_integration" "aws_integration_external" {
   name = local.integration_name
 }
