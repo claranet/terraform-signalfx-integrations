@@ -26,16 +26,16 @@ resource "signalfx_aws_integration" "aws_integration" {
   enabled     = var.enabled
   named_token = signalfx_org_token.aws_integration.name
 
-  integration_id             = signalfx_aws_external_integration.aws_integration_external.id
-  external_id                = signalfx_aws_external_integration.aws_integration_external.external_id
-  role_arn                   = aws_iam_role.sfx_role.arn
-  regions                    = var.aws_regions
-  poll_rate                  = var.poll_rate
-  import_cloud_watch         = var.import_cloudwatch
-  enable_aws_usage           = var.import_aws_usage
-  enable_check_large_volume  = var.enable_check_large_volume
-  enable_logs_sync           = var.enable_logs_sync
-  use_metric_streams_sync    = var.use_metric_streams_sync
+  integration_id            = signalfx_aws_external_integration.aws_integration_external.id
+  external_id               = signalfx_aws_external_integration.aws_integration_external.external_id
+  role_arn                  = aws_iam_role.sfx_role.arn
+  regions                   = var.aws_regions
+  poll_rate                 = var.poll_rate
+  import_cloud_watch        = var.import_cloudwatch
+  enable_aws_usage          = var.import_aws_usage
+  enable_check_large_volume = var.enable_check_large_volume
+  enable_logs_sync          = var.enable_logs_sync
+  use_metric_streams_sync   = var.use_metric_streams_sync
 
 
   namespace_sync_rule {
