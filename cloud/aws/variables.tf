@@ -68,12 +68,6 @@ variable "create_logs_iam" {
   default     = false
 }
 
-variable "use_get_metric_data" {
-  description = "Enable the use of Amazon's GetMetricData for collecting metrics"
-  type        = bool
-  default     = true
-}
-
 variable "use_metric_streams_sync" {
   description = "Enable the use of Amazon's Cloudwatch Metric Streams for ingesting metrics. When setting it to `true`, you also need to set `create_metric_streams_iam` to `true`"
   type        = bool
