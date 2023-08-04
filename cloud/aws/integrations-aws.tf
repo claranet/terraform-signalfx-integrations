@@ -47,7 +47,7 @@ resource "signalfx_aws_integration" "aws_integration" {
 
   dynamic "namespace_sync_rule" {
     iterator = iter
-    for_each = setsubtract(local.aws_services, local.excluded_services)
+    for_each = local.monitored_services
     content {
       default_action = try(lookup(var.namespace_sync_rules_filters[iter.value], "default_action", null), null)
       filter_action  = try(lookup(var.namespace_sync_rules_filters[iter.value], "filter_action", null), null)
