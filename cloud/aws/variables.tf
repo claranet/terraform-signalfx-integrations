@@ -113,7 +113,10 @@ variable "included_services" {
     "AWS/DX",
     "AWS/DynamoDB",
     "AWS/EBS",
-    "AWS/EC2",
+    # ec2 is always monitored by this module
+    # and is handled by a dedicated variable ec2_namespace_sync_rule
+    # (it's normal it doesn't appear in this list)
+    # "AWS/EC2",
     "AWS/EC2Spot",
     "AWS/ECS",
     "AWS/EFS",
@@ -157,9 +160,6 @@ variable "included_services" {
     "AWS/S3",
     "AWS/S3/Storage-Lens",
     "AWS/SageMaker",
-    "AWS/sagemaker/Endpoints",
-    "AWS/sagemaker/TrainingJobs",
-    "AWS/sagemaker/TransformJobs",
     "AWS/SDKMetrics",
     "AWS/SES",
     "AWS/SNS",
