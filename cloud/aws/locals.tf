@@ -1,5 +1,5 @@
 locals {
-  integration_name  = "AWSIntegration${var.suffix == "" ? "" : "-${title(var.suffix)}"}"
+  integration_name = "AWSIntegration${var.suffix == "" ? "" : "-${title(var.suffix)}"}"
 
   monitored_services = setsubtract(
     concat(var.included_services, var.extra_included_services),
