@@ -35,7 +35,6 @@ resource "signalfx_aws_integration" "aws_integration" {
   enable_aws_usage           = var.import_aws_usage
   enable_check_large_volume  = var.enable_check_large_volume
   enable_logs_sync           = var.enable_logs_sync
-  use_get_metric_data_method = var.use_get_metric_data
   use_metric_streams_sync    = var.use_metric_streams_sync
 
 
