@@ -80,16 +80,113 @@ variable "create_metric_streams_iam" {
   default     = false
 }
 
-variable "included_services" {
-  description = "List of AWS services to collect metrics for (By default it will collect every supported AWS services)"
-  type        = list(any)
-  default     = []
-}
-
 variable "namespace_sync_rules_filters" {
   description = "Define a map of filters to apply on included services, each key is the namespace name and values are key values pairs defining default_action, filter_action and filter_source."
   type        = map(any)
   default     = null
+}
+
+variable "included_services" {
+  description = "List of AWS services to collect metrics for (By default it will collect every supported AWS services)"
+  type        = list(string)
+  # https://docs.splunk.com/Observability/gdi/get-data-in/integrations.html#amazon-web-services
+  default = [
+    "AWS/ACMPrivateCA",
+    "AWS/AmazonMQ",
+    "AWS/ApiGateway",
+    "AWS/ApplicationELB",
+    "AWS/AppStream",
+    "AWS/Athena",
+    "AWS/AutoScaling",
+    "AWS/Backup",
+    "AWS/Billing",
+    "AWS/CertificateManager",
+    "AWS/CloudFront",
+    "AWS/CloudHSM",
+    "AWS/CloudSearch",
+    "AWS/CodeBuild",
+    "AWS/Cognito",
+    "AWS/Connect",
+    "AWS/DDoSProtection",
+    "AWS/DMS",
+    "AWS/DocDB",
+    "AWS/DX",
+    "AWS/DynamoDB",
+    "AWS/EBS",
+    # ec2 is always monitored by this module
+    # and is handled by a dedicated variable ec2_namespace_sync_rule
+    # (it's normal it doesn't appear in this list)
+    # "AWS/EC2",
+    "AWS/EC2Spot",
+    "AWS/ECS",
+    "AWS/EFS",
+    "AWS/EKS",
+    "AWS/ElastiCache",
+    "AWS/ElasticBeanstalk",
+    "AWS/ElasticInterface",
+    "AWS/ElasticMapReduce",
+    "AWS/ElasticTranscoder",
+    "AWS/ELB",
+    "AWS/ES",
+    "AWS/Events",
+    "AWS/Firehose",
+    "AWS/FSx",
+    "AWS/GameLift",
+    "AWS/Inspector",
+    "AWS/IoT",
+    "AWS/IoTAnalytics",
+    "AWS/Kafka",
+    "AWS/Kinesis",
+    "AWS/KinesisAnalytics",
+    "AWS/KinesisVideo",
+    "AWS/KMS",
+    "AWS/Lambda",
+    "AWS/Lex",
+    "AWS/Logs",
+    "AWS/MediaConnect",
+    "AWS/MediaConvert",
+    "AWS/MediaPackage",
+    "AWS/MediaTailor",
+    "AWS/ML",
+    "AWS/NATGateway",
+    "AWS/Neptune",
+    "AWS/NetworkELB",
+    "AWS/OpsWorks",
+    "AWS/Polly",
+    "AWS/RDS",
+    "AWS/Redshift",
+    "AWS/Robomaker",
+    "AWS/Route53",
+    "AWS/S3",
+    "AWS/S3/Storage-Lens",
+    "AWS/SageMaker",
+    "AWS/SDKMetrics",
+    "AWS/SES",
+    "AWS/SNS",
+    "AWS/SQS",
+    "AWS/States",
+    "AWS/StorageGateway",
+    "AWS/SWF",
+    "AWS/Textract",
+    "AWS/ThingsGraph",
+    "AWS/Translate",
+    "AWS/TrustedAdvisor",
+    "AWS/VPN",
+    "AWS/WAFV2",
+    "AWS/WorkMail",
+    "AWS/WorkSpaces",
+    "CWAgent",
+    "Glue",
+    "MediaLive",
+    "System/Linux",
+    "WAF",
+  ]
+}
+
+variable "extra_included_services" {
+  description = "List of AWS services to add to included_services (if you find one is missing from the default list please create a merge requests), check https://docs.splunk.com/Observability/gdi/get-data-in/integrations.html#amazon-web-services"
+  type        = list(string)
+  default     = []
 }
 
 variable "excluded_services" {
