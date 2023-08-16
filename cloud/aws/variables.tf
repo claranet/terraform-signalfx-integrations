@@ -232,3 +232,8 @@ variable "metrics_stats_to_sync" {
   default = null
 }
 
+variable "signalfx_token_name" {
+  description = "Name of already existing SFX token to use"
+  type        = string
+  default     = null
+}

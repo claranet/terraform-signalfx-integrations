@@ -71,6 +71,7 @@ No modules.
 | <a name="input_namespace_sync_rules_filters"></a> [namespace\_sync\_rules\_filters](#input\_namespace\_sync\_rules\_filters) | Define a map of filters to apply on included services, each key is the namespace name and values are key values pairs defining default\_action, filter\_action and filter\_source. | `map(any)` | `null` | no |
 | <a name="input_notifications_limits"></a> [notifications\_limits](#input\_notifications\_limits) | Where to send notifications about this token's limits | `list(string)` | `null` | no |
 | <a name="input_poll_rate"></a> [poll\_rate](#input\_poll\_rate) | AWS poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
+| <a name="input_signalfx_token_name"></a> [signalfx\_token\_name](#input\_signalfx\_token\_name) | Name of already existing SFX token to use | `string` | `null` | no |
 | <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 | <a name="input_use_metric_streams_sync"></a> [use\_metric\_streams\_sync](#input\_use\_metric\_streams\_sync) | Enable the use of Amazon's Cloudwatch Metric Streams for ingesting metrics. When setting it to `true`, you also need to set `create_metric_streams_iam` to `true` | `bool` | `false` | no |
 
