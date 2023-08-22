@@ -147,6 +147,8 @@ provider "aws" {
   - then change `create_metric_streams_iam` from `true` to `false` and run `terraform apply` to destroy the IAM role.
     If you do not follow that process, the AWS integration will end up in `CANCELATION_FAILED` status.
 
+Note: filtering metrics on tags does not work with Metric Streams, so the default filter on the `aws_tag_sfx_monitored` tag is not used. This can increase your SignalFX licensing costs when switching from pull based ingestion to push if not all EC2 hosts have to be monitored in an AWS account.
+
 ### CloudWatch Logs sync (BETA)
 
 - When enabling AWS Cloudwatch Logs sync with `enable_logs_sync = true`, you also need to set `create_logs_iam` to `true`. 
