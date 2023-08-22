@@ -14,17 +14,18 @@ module "signalfx-integrations-cloud-aws" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26 |
-| aws | >= 2 |
-| signalfx | >= 6.9.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0.0 |
+| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | >= 8.1.0 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | >= 0.9.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 2 |
-| signalfx | >= 6.9.0 |
-| time | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0.0 |
+| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | >= 8.1.0 |
+| <a name="provider_time"></a> [time](#provider\_time) | >= 0.9.1 |
 
 ## Modules
 
@@ -52,36 +53,36 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| aws\_regions | List of AWS regions that SignalFx should monitor | `list(any)` | <pre>[<br>  "eu-west-1"<br>]</pre> | no |
-| create\_logs\_iam | Enable the creation of the IAM role required to enable Amazon's Cloudwatch Logs sync. This is separate from the `enable_logs_sync` parameter as disabling Logs still requires the existence of the IAM role | `bool` | `false` | no |
-| create\_metric\_streams\_iam | Enable the creation of the IAM role required to enable Amazon's Cloudwatch Metric Streams for ingesting metrics. This is separate from the `use_metric_streams_sync` parameter as disabling Metric Streams still requires the existence of the IAM role | `bool` | `false` | no |
-| custom\_namespace\_sync\_rules | List where each element is a rule which controls the data collected by SignalFx for the specified namespace | <pre>list(object({<br>    default_action = string<br>    filter_action  = string<br>    filter_source  = string<br>    namespace      = string<br>  }))</pre> | `null` | no |
-| ec2\_namespace\_sync\_rule | Default namespace sync rule with filtering capabilities | <pre>object({<br>    default_action = string<br>    filter_action  = string<br>    filter_source  = string<br>    namespace      = string<br>  })</pre> | <pre>{<br>  "default_action": "Exclude",<br>  "filter_action": "Include",<br>  "filter_source": "filter('aws_tag_sfx_monitored', 'true')",<br>  "namespace": "AWS/EC2"<br>}</pre> | no |
-| enable\_check\_large\_volume | Enable monitoring of the amount of data coming in from the integration | `bool` | `false` | no |
-| enable\_logs\_sync | Enable the AWS logs synchronization. When setting it to `true`, you also need to set `create_logs_iam` to `true` | `bool` | `false` | no |
-| enabled | Whether the AWS integration is enabled | `bool` | `true` | no |
-| excluded\_services | List of AWS services to not collect metrics for (do not add an include namespace\_sync\_rule) | `list(any)` | `[]` | no |
-| extra\_included\_services | List of AWS services to add to included\_services (if you find one is missing from the default list please create a merge requests), check https://docs.splunk.com/Observability/gdi/get-data-in/integrations.html#amazon-web-services | `list(string)` | `[]` | no |
-| host\_or\_usage\_limits | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
-| import\_aws\_usage | Import usage metrics from AWS to use with AWS Cost Optimizer | `bool` | `false` | no |
-| import\_cloudwatch | Import Cloud Watch metrics from AWS | `bool` | `true` | no |
-| included\_services | List of AWS services to collect metrics for (By default it will collect every supported AWS services) | `list(string)` | <pre>[<br>  "AWS/ACMPrivateCA",<br>  "AWS/AmazonMQ",<br>  "AWS/ApiGateway",<br>  "AWS/ApplicationELB",<br>  "AWS/AppStream",<br>  "AWS/Athena",<br>  "AWS/AutoScaling",<br>  "AWS/Backup",<br>  "AWS/Billing",<br>  "AWS/CertificateManager",<br>  "AWS/CloudFront",<br>  "AWS/CloudHSM",<br>  "AWS/CloudSearch",<br>  "AWS/CodeBuild",<br>  "AWS/Cognito",<br>  "AWS/Connect",<br>  "AWS/DDoSProtection",<br>  "AWS/DMS",<br>  "AWS/DocDB",<br>  "AWS/DX",<br>  "AWS/DynamoDB",<br>  "AWS/EBS",<br>  "AWS/EC2Spot",<br>  "AWS/ECS",<br>  "AWS/EFS",<br>  "AWS/EKS",<br>  "AWS/ElastiCache",<br>  "AWS/ElasticBeanstalk",<br>  "AWS/ElasticInterface",<br>  "AWS/ElasticMapReduce",<br>  "AWS/ElasticTranscoder",<br>  "AWS/ELB",<br>  "AWS/ES",<br>  "AWS/Events",<br>  "AWS/Firehose",<br>  "AWS/FSx",<br>  "AWS/GameLift",<br>  "AWS/Inspector",<br>  "AWS/IoT",<br>  "AWS/IoTAnalytics",<br>  "AWS/Kafka",<br>  "AWS/Kinesis",<br>  "AWS/KinesisAnalytics",<br>  "AWS/KinesisVideo",<br>  "AWS/KMS",<br>  "AWS/Lambda",<br>  "AWS/Lex",<br>  "AWS/Logs",<br>  "AWS/MediaConnect",<br>  "AWS/MediaConvert",<br>  "AWS/MediaPackage",<br>  "AWS/MediaTailor",<br>  "AWS/ML",<br>  "AWS/NATGateway",<br>  "AWS/Neptune",<br>  "AWS/NetworkELB",<br>  "AWS/OpsWorks",<br>  "AWS/Polly",<br>  "AWS/RDS",<br>  "AWS/Redshift",<br>  "AWS/Robomaker",<br>  "AWS/Route53",<br>  "AWS/S3",<br>  "AWS/S3/Storage-Lens",<br>  "AWS/SageMaker",<br>  "AWS/SDKMetrics",<br>  "AWS/SES",<br>  "AWS/SNS",<br>  "AWS/SQS",<br>  "AWS/States",<br>  "AWS/StorageGateway",<br>  "AWS/SWF",<br>  "AWS/Textract",<br>  "AWS/ThingsGraph",<br>  "AWS/Translate",<br>  "AWS/TrustedAdvisor",<br>  "AWS/VPN",<br>  "AWS/WAFV2",<br>  "AWS/WorkMail",<br>  "AWS/WorkSpaces",<br>  "CWAgent",<br>  "Glue",<br>  "MediaLive",<br>  "System/Linux",<br>  "WAF"<br>]</pre> | no |
-| metrics\_stats\_to\_sync | List of objects defining namespace, metric and stats to change the standard set of statistics retrieved by integration by specific ones. Useful to fetch statistics not available by default like percentile | <pre>list(object({<br>    namespace = string<br>    metric    = string<br>    stats     = list(string)<br>  }))</pre> | `null` | no |
-| namespace\_sync\_rules\_filters | Define a map of filters to apply on included services, each key is the namespace name and values are key values pairs defining default\_action, filter\_action and filter\_source. | `map(any)` | `null` | no |
-| notifications\_limits | Where to send notifications about this token's limits | `list(string)` | `null` | no |
-| poll\_rate | AWS poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
-| suffix | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
-| use\_metric\_streams\_sync | Enable the use of Amazon's Cloudwatch Metric Streams for ingesting metrics. When setting it to `true`, you also need to set `create_metric_streams_iam` to `true` | `bool` | `false` | no |
+| <a name="input_aws_regions"></a> [aws\_regions](#input\_aws\_regions) | List of AWS regions that SignalFx should monitor | `list(any)` | <pre>[<br>  "eu-west-1"<br>]</pre> | no |
+| <a name="input_create_logs_iam"></a> [create\_logs\_iam](#input\_create\_logs\_iam) | Enable the creation of the IAM role required to enable Amazon's Cloudwatch Logs sync. This is separate from the `enable_logs_sync` parameter as disabling Logs still requires the existence of the IAM role | `bool` | `false` | no |
+| <a name="input_create_metric_streams_iam"></a> [create\_metric\_streams\_iam](#input\_create\_metric\_streams\_iam) | Enable the creation of the IAM role required to enable Amazon's Cloudwatch Metric Streams for ingesting metrics. This is separate from the `use_metric_streams_sync` parameter as disabling Metric Streams still requires the existence of the IAM role | `bool` | `false` | no |
+| <a name="input_custom_namespace_sync_rules"></a> [custom\_namespace\_sync\_rules](#input\_custom\_namespace\_sync\_rules) | List where each element is a rule which controls the data collected by SignalFx for the specified namespace | <pre>list(object({<br>    default_action = string<br>    filter_action  = string<br>    filter_source  = string<br>    namespace      = string<br>  }))</pre> | `null` | no |
+| <a name="input_ec2_namespace_sync_rule"></a> [ec2\_namespace\_sync\_rule](#input\_ec2\_namespace\_sync\_rule) | Default namespace sync rule with filtering capabilities | <pre>object({<br>    default_action = string<br>    filter_action  = string<br>    filter_source  = string<br>    namespace      = string<br>  })</pre> | <pre>{<br>  "default_action": "Exclude",<br>  "filter_action": "Include",<br>  "filter_source": "filter('aws_tag_sfx_monitored', 'true')",<br>  "namespace": "AWS/EC2"<br>}</pre> | no |
+| <a name="input_enable_check_large_volume"></a> [enable\_check\_large\_volume](#input\_enable\_check\_large\_volume) | Enable monitoring of the amount of data coming in from the integration | `bool` | `false` | no |
+| <a name="input_enable_logs_sync"></a> [enable\_logs\_sync](#input\_enable\_logs\_sync) | Enable the AWS logs synchronization. When setting it to `true`, you also need to set `create_logs_iam` to `true` | `bool` | `false` | no |
+| <a name="input_enabled"></a> [enabled](#input\_enabled) | Whether the AWS integration is enabled | `bool` | `true` | no |
+| <a name="input_excluded_services"></a> [excluded\_services](#input\_excluded\_services) | List of AWS services to not collect metrics for (do not add an include namespace\_sync\_rule) | `list(any)` | `[]` | no |
+| <a name="input_extra_included_services"></a> [extra\_included\_services](#input\_extra\_included\_services) | List of AWS services to add to included\_services (if you find one is missing from the default list please create a merge requests), check https://docs.splunk.com/Observability/gdi/get-data-in/integrations.html#amazon-web-services | `list(string)` | `[]` | no |
+| <a name="input_host_or_usage_limits"></a> [host\_or\_usage\_limits](#input\_host\_or\_usage\_limits) | Specify Usage-based limits for this integration | `map(number)` | `null` | no |
+| <a name="input_import_aws_usage"></a> [import\_aws\_usage](#input\_import\_aws\_usage) | Import usage metrics from AWS to use with AWS Cost Optimizer | `bool` | `false` | no |
+| <a name="input_import_cloudwatch"></a> [import\_cloudwatch](#input\_import\_cloudwatch) | Import Cloud Watch metrics from AWS | `bool` | `true` | no |
+| <a name="input_included_services"></a> [included\_services](#input\_included\_services) | List of AWS services to collect metrics for (By default it will collect every supported AWS services) | `list(string)` | <pre>[<br>  "AWS/ACMPrivateCA",<br>  "AWS/AmazonMQ",<br>  "AWS/ApiGateway",<br>  "AWS/ApplicationELB",<br>  "AWS/AppStream",<br>  "AWS/Athena",<br>  "AWS/AutoScaling",<br>  "AWS/Backup",<br>  "AWS/Billing",<br>  "AWS/CertificateManager",<br>  "AWS/CloudFront",<br>  "AWS/CloudHSM",<br>  "AWS/CloudSearch",<br>  "AWS/CodeBuild",<br>  "AWS/Cognito",<br>  "AWS/Connect",<br>  "AWS/DDoSProtection",<br>  "AWS/DMS",<br>  "AWS/DocDB",<br>  "AWS/DX",<br>  "AWS/DynamoDB",<br>  "AWS/EBS",<br>  "AWS/EC2Spot",<br>  "AWS/ECS",<br>  "AWS/EFS",<br>  "AWS/EKS",<br>  "AWS/ElastiCache",<br>  "AWS/ElasticBeanstalk",<br>  "AWS/ElasticInterface",<br>  "AWS/ElasticMapReduce",<br>  "AWS/ElasticTranscoder",<br>  "AWS/ELB",<br>  "AWS/ES",<br>  "AWS/Events",<br>  "AWS/Firehose",<br>  "AWS/FSx",<br>  "AWS/GameLift",<br>  "AWS/Inspector",<br>  "AWS/IoT",<br>  "AWS/IoTAnalytics",<br>  "AWS/Kafka",<br>  "AWS/Kinesis",<br>  "AWS/KinesisAnalytics",<br>  "AWS/KinesisVideo",<br>  "AWS/KMS",<br>  "AWS/Lambda",<br>  "AWS/Lex",<br>  "AWS/Logs",<br>  "AWS/MediaConnect",<br>  "AWS/MediaConvert",<br>  "AWS/MediaPackage",<br>  "AWS/MediaTailor",<br>  "AWS/ML",<br>  "AWS/NATGateway",<br>  "AWS/Neptune",<br>  "AWS/NetworkELB",<br>  "AWS/OpsWorks",<br>  "AWS/Polly",<br>  "AWS/RDS",<br>  "AWS/Redshift",<br>  "AWS/Robomaker",<br>  "AWS/Route53",<br>  "AWS/S3",<br>  "AWS/S3/Storage-Lens",<br>  "AWS/SageMaker",<br>  "AWS/SDKMetrics",<br>  "AWS/SES",<br>  "AWS/SNS",<br>  "AWS/SQS",<br>  "AWS/States",<br>  "AWS/StorageGateway",<br>  "AWS/SWF",<br>  "AWS/Textract",<br>  "AWS/ThingsGraph",<br>  "AWS/Translate",<br>  "AWS/TrustedAdvisor",<br>  "AWS/VPN",<br>  "AWS/WAFV2",<br>  "AWS/WorkMail",<br>  "AWS/WorkSpaces",<br>  "CWAgent",<br>  "Glue",<br>  "MediaLive",<br>  "System/Linux",<br>  "WAF"<br>]</pre> | no |
+| <a name="input_metrics_stats_to_sync"></a> [metrics\_stats\_to\_sync](#input\_metrics\_stats\_to\_sync) | List of objects defining namespace, metric and stats to change the standard set of statistics retrieved by integration by specific ones. Useful to fetch statistics not available by default like percentile | <pre>list(object({<br>    namespace = string<br>    metric    = string<br>    stats     = list(string)<br>  }))</pre> | `null` | no |
+| <a name="input_namespace_sync_rules_filters"></a> [namespace\_sync\_rules\_filters](#input\_namespace\_sync\_rules\_filters) | Define a map of filters to apply on included services, each key is the namespace name and values are key values pairs defining default\_action, filter\_action and filter\_source. | `map(any)` | `null` | no |
+| <a name="input_notifications_limits"></a> [notifications\_limits](#input\_notifications\_limits) | Where to send notifications about this token's limits | `list(string)` | `null` | no |
+| <a name="input_poll_rate"></a> [poll\_rate](#input\_poll\_rate) | AWS poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
+| <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
+| <a name="input_use_metric_streams_sync"></a> [use\_metric\_streams\_sync](#input\_use\_metric\_streams\_sync) | Enable the use of Amazon's Cloudwatch Metric Streams for ingesting metrics. When setting it to `true`, you also need to set `create_metric_streams_iam` to `true` | `bool` | `false` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| aws\_integration\_id | SignalFx integration ID |
-| aws\_role\_arn | The role ARN of the SignalFx integration |
-| aws\_role\_name | The IAM role name of the SignalFx integration |
-| sfx\_external\_id | SignalFx integration external ID |
-| signalfx\_org\_token | Org token for ingesting data from AWS integration |
+| <a name="output_aws_integration_id"></a> [aws\_integration\_id](#output\_aws\_integration\_id) | SignalFx integration ID |
+| <a name="output_aws_role_arn"></a> [aws\_role\_arn](#output\_aws\_role\_arn) | The role ARN of the SignalFx integration |
+| <a name="output_aws_role_name"></a> [aws\_role\_name](#output\_aws\_role\_name) | The IAM role name of the SignalFx integration |
+| <a name="output_sfx_external_id"></a> [sfx\_external\_id](#output\_sfx\_external\_id) | SignalFx integration external ID |
+| <a name="output_signalfx_org_token"></a> [signalfx\_org\_token](#output\_signalfx\_org\_token) | Org token for ingesting data from AWS integration |
 <!-- END_TF_DOCS -->
 
 ## Related documentation
