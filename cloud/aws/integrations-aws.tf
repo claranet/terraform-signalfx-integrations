@@ -39,9 +39,9 @@ resource "signalfx_aws_integration" "aws_integration" {
 
 
   namespace_sync_rule {
-    default_action = var.ec2_namespace_sync_rule.default_action
-    filter_action  = var.ec2_namespace_sync_rule.filter_action
-    filter_source  = var.ec2_namespace_sync_rule.filter_source
+    default_action = var.use_metric_streams_sync ? null : var.ec2_namespace_sync_rule.default_action
+    filter_action  = var.use_metric_streams_sync ? null : var.ec2_namespace_sync_rule.filter_action
+    filter_source  = var.use_metric_streams_sync ? null : var.ec2_namespace_sync_rule.filter_source
     namespace      = var.ec2_namespace_sync_rule.namespace
   }
 
@@ -83,4 +83,3 @@ resource "signalfx_aws_integration" "aws_integration" {
     time_sleep.logs_policy_availability,
   ]
 }
-
