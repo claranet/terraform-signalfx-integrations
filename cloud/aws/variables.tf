@@ -234,6 +234,6 @@ variable "metrics_stats_to_sync" {
 
 variable "sfx_role_permissions_boundary" {
   description = "ARN of the permissions boundary to be attached to the role, if needed"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
