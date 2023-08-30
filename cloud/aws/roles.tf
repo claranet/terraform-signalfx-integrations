@@ -2,7 +2,7 @@ resource "aws_iam_role" "sfx_role" {
   name                 = "SignalFxIntegration${var.suffix == "" ? "" : "-${title(var.suffix)}"}"
   description          = "SignalFx integration to read out data and send it to SignalFx's AWS account"
   assume_role_policy   = data.aws_iam_policy_document.sfx_policy_doc.json
-  permissions_boundary = try(var.sfx_role_permissions_boundary, false) ? var.sfx_role_permissions_boundary : null
+  permissions_boundary = var.sfx_role_permissions_boundary == null ? var.sfx_role_permissions_boundary : null
 }
 
 resource "aws_iam_role_policy_attachment" "sfx_policy_attach" {
