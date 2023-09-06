@@ -21,14 +21,14 @@ module "signalfx-integrations-cloud-azure" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
-| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | ~> 6.11 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | ~> 8.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | ~> 6.11 |
+| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | ~> 8.0 |
 
 ## Modules
 
@@ -40,7 +40,6 @@ No modules.
 |------|------|
 | [signalfx_azure_integration.azure_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/resources/azure_integration) | resource |
 | [signalfx_org_token.azure_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/resources/org_token) | resource |
-| [signalfx_azure_services.azure_services](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/data-sources/azure_services) | data source |
 
 ## Inputs
 
@@ -59,6 +58,7 @@ No modules.
 | <a name="input_poll_rate"></a> [poll\_rate](#input\_poll\_rate) | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
 | <a name="input_resource_filter_rules"></a> [resource\_filter\_rules](#input\_resource\_filter\_rules) | List of rules for filtering Azure resources by their tags. Each filter follows "filter('key', 'value')". Referenced keys are limited to tags and must start with the "azure\_tag\_" prefix | <pre>list(object({<br>    filter = object({<br>      source = string<br>    })<br>  }))</pre> | `null` | no |
 | <a name="input_services"></a> [services](#input\_services) | Azure service metrics to import. Empty list imports all services | `list(string)` | `[]` | no |
+| <a name="input_signalfx_token_name"></a> [signalfx\_token\_name](#input\_signalfx\_token\_name) | Name of already existing SFX token to use | `string` | `null` | no |
 | <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 | <a name="input_sync_guest_os_namespaces"></a> [sync\_guest\_os\_namespaces](#input\_sync\_guest\_os\_namespaces) | Sync additional namespaces for VMs (including VMs in scale sets) to pull metrics from Azure Diagnostics Extensision when enabled | `bool` | `false` | no |
 

@@ -1,6 +1,3 @@
-data "signalfx_azure_services" "azure_services" {
-}
-
 resource "signalfx_azure_integration" "azure_integration" {
   name        = local.integration_name
   enabled     = var.enabled
@@ -12,7 +9,7 @@ resource "signalfx_azure_integration" "azure_integration" {
   app_id     = var.azure_sp_application_id
   secret_key = var.azure_sp_application_token
 
-  services            = setsubtract(local.azure_services, var.excluded_services)
+  services            = setsubtract(var.services, var.excluded_services)
   additional_services = var.additional_services
 
   dynamic "resource_filter_rules" {
