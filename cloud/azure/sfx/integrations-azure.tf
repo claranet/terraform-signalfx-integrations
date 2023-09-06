@@ -13,17 +13,15 @@ resource "signalfx_azure_integration" "azure_integration" {
   additional_services = var.additional_services
 
   dynamic "resource_filter_rules" {
-    for_each = var.resource_filter_rules != null ? var.resource_filter_rules : []
+    for_each = var.resource_filter_rules[*]
     content {
-      filter = {
-        source = lookup(resource_filter_rules.value.filter, "source", null)
-      }
+      filter_source = lookup(resource_filter_rules.value.filter, "source", null)
     }
   }
 
   sync_guest_os_namespaces = var.sync_guest_os_namespaces
   dynamic "custom_namespaces_per_service" {
-    for_each = var.custom_namespaces_per_service != null ? var.custom_namespaces_per_service : []
+    for_each = var.custom_namespaces_per_service[*]
     content {
       service    = custom_namespaces_per_service.value.service
       namespaces = custom_namespaces_per_service.value.namespaces
@@ -43,7 +41,7 @@ resource "signalfx_org_token" "azure_integration" {
 
   notifications = var.notifications_limits
   dynamic "host_or_usage_limits" {
-    for_each = var.host_or_usage_limits != null ? [1] : []
+    for_each = var.host_or_usage_limits[*]
     content {
       host_limit                              = lookup(var.host_or_usage_limits, "host_limit", null)
       host_notification_threshold             = lookup(var.host_or_usage_limits, "host_notification_threshold", null)
