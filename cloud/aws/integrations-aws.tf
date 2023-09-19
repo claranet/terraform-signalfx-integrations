@@ -1,4 +1,7 @@
+# "Named token to use for ingest on the SignalFx AWS integration"
+# We need a specific token to avoid using the Default organization one.
 resource "signalfx_org_token" "aws_integration" {
+  count       = var.signalfx_token_name != null && var.signalfx_token_name != "" ? 0 : 1
   name        = local.integration_name
   description = "Org token for ingesting data from ${local.integration_name} AWS integration"
 
@@ -24,7 +27,7 @@ resource "signalfx_aws_external_integration" "aws_integration_external" {
 
 resource "signalfx_aws_integration" "aws_integration" {
   enabled     = var.enabled
-  named_token = signalfx_org_token.aws_integration.name
+  named_token = var.signalfx_token_name != null ? var.signalfx_token_name : one(signalfx_org_token.aws_integration[*].name)
 
   integration_id            = signalfx_aws_external_integration.aws_integration_external.id
   external_id               = signalfx_aws_external_integration.aws_integration_external.external_id

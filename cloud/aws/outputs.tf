@@ -20,6 +20,6 @@ output "sfx_external_id" {
 
 output "signalfx_org_token" {
   description = "Org token for ingesting data from AWS integration"
-  value       = signalfx_org_token.aws_integration.secret
+  value       = try(signalfx_org_token.aws_integration[0].secret, "")
   sensitive   = true
 }
