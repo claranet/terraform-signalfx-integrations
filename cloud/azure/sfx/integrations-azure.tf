@@ -13,15 +13,16 @@ resource "signalfx_azure_integration" "azure_integration" {
   additional_services = var.additional_services
 
   dynamic "resource_filter_rules" {
-    for_each = var.resource_filter_rules[*]
+    for_each = var.resource_filter_rules
+    iterator = rule
     content {
-      filter_source = lookup(resource_filter_rules.value.filter, "source", null)
+      filter_source = rule.value.filter.source
     }
   }
 
   sync_guest_os_namespaces = var.sync_guest_os_namespaces
   dynamic "custom_namespaces_per_service" {
-    for_each = var.custom_namespaces_per_service[*]
+    for_each = var.custom_namespaces_per_service
     content {
       service    = custom_namespaces_per_service.value.service
       namespaces = custom_namespaces_per_service.value.namespaces
