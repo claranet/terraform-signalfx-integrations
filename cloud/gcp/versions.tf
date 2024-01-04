@@ -2,7 +2,7 @@ terraform {
   required_providers {
     signalfx = {
       source  = "splunk-terraform/signalfx"
-      version = ">= 6.21.0"
+      version = ">= 8.0.0"
     }
     google = {
       source  = "hashicorp/google"
