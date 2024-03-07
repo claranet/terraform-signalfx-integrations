@@ -16,6 +16,7 @@ output "aws_integration_id" {
 output "sfx_external_id" {
   description = "SignalFx integration external ID"
   value       = signalfx_aws_integration.aws_integration.external_id
+  sensitive   = true
 }
 
 output "signalfx_org_token" {
