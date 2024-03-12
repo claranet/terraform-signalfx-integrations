@@ -57,7 +57,8 @@ variable "resource_filter_rules" {
       source = string
     })
   }))
-  default = null
+  default  = []
+  nullable = false
 }
 
 variable "sync_guest_os_namespaces" {
@@ -72,7 +73,8 @@ variable "custom_namespaces_per_service" {
     service    = string
     namespaces = list(string)
   }))
-  default = null
+  default  = []
+  nullable = false
 }
 
 variable "azure_tenant_id" {

@@ -1,6 +1,3 @@
-data "signalfx_azure_services" "azure_services" {
-}
-
 resource "signalfx_azure_integration" "azure_integration" {
   name        = local.integration_name
   enabled     = var.enabled
@@ -12,21 +9,20 @@ resource "signalfx_azure_integration" "azure_integration" {
   app_id     = var.azure_sp_application_id
   secret_key = var.azure_sp_application_token
 
-  services            = setsubtract(local.azure_services, var.excluded_services)
+  services            = setsubtract(var.services, var.excluded_services)
   additional_services = var.additional_services
 
   dynamic "resource_filter_rules" {
-    for_each = var.resource_filter_rules != null ? var.resource_filter_rules : []
+    for_each = var.resource_filter_rules
+    iterator = rule
     content {
-      filter = {
-        source = lookup(resource_filter_rules.value.filter, "source", null)
-      }
+      filter_source = rule.value.filter.source
     }
   }
 
   sync_guest_os_namespaces = var.sync_guest_os_namespaces
   dynamic "custom_namespaces_per_service" {
-    for_each = var.custom_namespaces_per_service != null ? var.custom_namespaces_per_service : []
+    for_each = var.custom_namespaces_per_service
     content {
       service    = custom_namespaces_per_service.value.service
       namespaces = custom_namespaces_per_service.value.namespaces
@@ -46,7 +42,7 @@ resource "signalfx_org_token" "azure_integration" {
 
   notifications = var.notifications_limits
   dynamic "host_or_usage_limits" {
-    for_each = var.host_or_usage_limits != null ? [1] : []
+    for_each = var.host_or_usage_limits[*]
     content {
       host_limit                              = lookup(var.host_or_usage_limits, "host_limit", null)
       host_notification_threshold             = lookup(var.host_or_usage_limits, "host_notification_threshold", null)
