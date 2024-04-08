@@ -124,6 +124,7 @@ variable "included_services" {
     "AWS/ElastiCache",
     "AWS/ElasticBeanstalk",
     "AWS/ElasticMapReduce",
+    "AWS/ElasticInference",
     "AWS/ElasticTranscoder",
     "AWS/ELB",
     "AWS/ES",
