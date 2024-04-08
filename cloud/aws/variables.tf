@@ -89,7 +89,7 @@ variable "namespace_sync_rules_filters" {
 variable "included_services" {
   description = "List of AWS services to collect metrics for (By default it will collect every supported AWS services)"
   type        = list(string)
-  # https://docs.splunk.com/Observability/gdi/get-data-in/integrations.html#amazon-web-services
+  # https://docs.splunk.com/observability/en/gdi/integrations/cloud-aws.html
   default = [
     "AWS/ACMPrivateCA",
     "AWS/AmazonMQ",
@@ -123,7 +123,6 @@ variable "included_services" {
     "AWS/EKS",
     "AWS/ElastiCache",
     "AWS/ElasticBeanstalk",
-    "AWS/ElasticInterface",
     "AWS/ElasticMapReduce",
     "AWS/ElasticTranscoder",
     "AWS/ELB",
