@@ -27,7 +27,7 @@ resource "signalfx_aws_external_integration" "aws_integration_external" {
 
 resource "signalfx_aws_integration" "aws_integration" {
   enabled     = var.enabled
-  named_token = var.signalfx_token_name != null ? var.signalfx_token_name : one(signalfx_org_token.aws_integration[*].name)
+  named_token = var.use_metric_streams_sync == false ? var.signalfx_token_name != null ? var.signalfx_token_name : one(signalfx_org_token.aws_integration[*].name) : null
 
   integration_id            = signalfx_aws_external_integration.aws_integration_external.id
   external_id               = signalfx_aws_external_integration.aws_integration_external.external_id
