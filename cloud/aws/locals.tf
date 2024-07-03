@@ -1,5 +1,5 @@
 locals {
-  integration_name = "AWSIntegration${var.suffix == "" ? "" : "-${title(var.suffix)}"}"
+  integration_name = var.signalfx_token_name != null && var.signalfx_token_name != "" ? var.signalfx_token_name : "AWSIntegration${var.suffix == "" ? "" : "-${title(var.suffix)}"}"
 
   monitored_services = setsubtract(
     concat(var.included_services, var.extra_included_services),

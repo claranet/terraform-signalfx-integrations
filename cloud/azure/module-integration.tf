@@ -20,5 +20,5 @@ module "sfx_integration" {
   azure_sp_application_id    = azuread_application.signalfx_integration.application_id
   azure_sp_application_token = azuread_service_principal_password.signalfx_integration_sp_pwd.value
 
-  signalfx_token_name        = var.signalfx_token_name
+  signalfx_token_name = var.signalfx_token_name
 }
