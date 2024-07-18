@@ -75,9 +75,9 @@ module "signalfx-integrations-cloud-azure" {
 | <a name="input_poll_rate"></a> [poll\_rate](#input\_poll\_rate) | Azure poll rate in seconds (One of 60 or 300) | `number` | `300` | no |
 | <a name="input_resource_filter_rules"></a> [resource\_filter\_rules](#input\_resource\_filter\_rules) | List of rules for filtering Azure resources by their tags. Each filter follows "filter('key', 'value')". Referenced keys are limited to tags and must start with the "azure\_tag\_" prefix | <pre>list(object({<br>    filter = object({<br>      source = string<br>    })<br>  }))</pre> | `null` | no |
 | <a name="input_services"></a> [services](#input\_services) | Azure service metrics to import. Empty list imports all services | `list(string)` | `[]` | no |
+| <a name="input_signalfx_token_name"></a> [signalfx\_token\_name](#input\_signalfx\_token\_name) | Name of already existing SFX token to use | `string` | `null` | no |
 | <a name="input_suffix"></a> [suffix](#input\_suffix) | Optional suffix to identify and avoid duplication of unique resources | `string` | `""` | no |
 | <a name="input_sync_guest_os_namespaces"></a> [sync\_guest\_os\_namespaces](#input\_sync\_guest\_os\_namespaces) | Sync additional namespaces for VMs (including VMs in scale sets) to pull metrics from Azure Diagnostics Extensision when enabled | `bool` | `false` | no |
-| <a name="input_signalfx_token_name"></a> [signalfx_token_name](#input\_signalfx_token_name) | Optional signalfx token name. To use a sfx token already existing | `string` | `""` | no |
 
 ## Outputs
 

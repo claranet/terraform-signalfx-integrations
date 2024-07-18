@@ -23,9 +23,9 @@ module "signalfx-integrations-cloud-aws" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.12.0 |
-| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | 8.1.0 |
-| <a name="provider_time"></a> [time](#provider\_time) | 0.9.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0.0 |
+| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | >= 8.1.0 |
+| <a name="provider_time"></a> [time](#provider\_time) | >= 0.9.1 |
 
 ## Modules
 
