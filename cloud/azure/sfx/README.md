@@ -21,14 +21,14 @@ module "signalfx-integrations-cloud-azure" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
-| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | ~> 6.11 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | ~> 8.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | ~> 6.11 |
+| <a name="provider_signalfx"></a> [signalfx](#provider\_signalfx) | ~> 8.0 |
 
 ## Modules
 
@@ -40,7 +40,6 @@ No modules.
 |------|------|
 | [signalfx_azure_integration.azure_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/resources/azure_integration) | resource |
 | [signalfx_org_token.azure_integration](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/resources/org_token) | resource |
-| [signalfx_azure_services.azure_services](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs/data-sources/azure_services) | data source |
 
 ## Inputs
 

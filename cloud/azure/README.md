@@ -32,10 +32,10 @@ module "signalfx-integrations-cloud-azure" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
 | <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | ~> 2.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.1 |
-| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | ~> 6.11 |
+| <a name="requirement_signalfx"></a> [signalfx](#requirement\_signalfx) | ~> 8.0 |
 
 ## Providers
 
